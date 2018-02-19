@@ -1,0 +1,21 @@
+h1 {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    letter-spacing: 5px;
+}
+h2 {
+    padding: 15px;
+    font-family: ail-black;
+    letter-spacing: 3px;
+    text-align: left;
+    font-size: large;
+  }
+
+section {
+    font-size: large;
+}
+
+ul {
+    list-style: none;
+}
