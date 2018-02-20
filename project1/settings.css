@@ -1,0 +1,15 @@
+h1 {
+    text-align: center;
+    padding-top: 25px;
+}
+
+h2 {
+    padding-left: 25px;
+}
+ul {
+    line-height: 1.5;
+}
+
+ul:hover {
+    text-decoration: underline;
+}
