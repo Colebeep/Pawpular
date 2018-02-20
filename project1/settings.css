@@ -1,15 +1,11 @@
 h1 {
-    text-align: center;
-    padding-top: 25px;
+    padding-top:20px;
+    padding-bottom:10px;
 }
-
-h2 {
-    padding-left: 25px;
+.settings {
+    list-style-type: none;
 }
-ul {
-    line-height: 1.5;
-}
-
-ul:hover {
-    text-decoration: underline;
+.settings>li{
+    margin-top:20px;
+    margin-left: 30%;
 }
