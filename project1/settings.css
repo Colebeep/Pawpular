@@ -2,10 +2,14 @@ h1 {
     padding-top:20px;
     padding-bottom:10px;
 }
-.settings {
-    list-style-type: none;
+.btn {
+    margin-bottom: 5%;
+    width: 75%;
+    align-self:center;
 }
-.settings>li{
-    margin-top:20px;
-    margin-left: 30%;
+.col-sm-3 {
+    margin-top:2.5%;
+}
+.col-sm-4 {
+    margin-top:2.5%;
 }

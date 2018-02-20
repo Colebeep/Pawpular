@@ -1,4 +1,5 @@
 var map;
+var icon;
 function myMap() {
     var mapOptions = {
         center: new google.maps.LatLng(42.389440, -72.526371),
@@ -8,7 +9,7 @@ function myMap() {
 
     map = new google.maps.Map(document.getElementById("map"), mapOptions);
     
-    var icon = {
+    icon = {
         url: "pictures/camera_icon.png", // url
         scaledSize: new google.maps.Size(33, 33), // scaled size
         origin: new google.maps.Point(0,0), // origin
@@ -58,8 +59,11 @@ function addInfoWindow(marker, content){
 }
     
 function placeMarker(location) {
-    var marker = new google.maps.Marker({
-        position: location,
-        map: map
-    });
+    if(confirm("Confirm Marker?")) {
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            icon:icon
+        });
+    }
 }
