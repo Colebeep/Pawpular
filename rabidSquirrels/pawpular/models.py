@@ -49,3 +49,10 @@ class Comment(models.Model):
     """
     Model representing a pet.
     """
+    comment = models.TextField(max_length=400, help_text="What are your thoughts..")
+    
+    def __str__(self):
+        """
+        String for representing the Model object (in Admin site etc.)
+        """
+        return self.comment
