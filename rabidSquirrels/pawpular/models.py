@@ -22,14 +22,14 @@ class MapPost(Post):
     expiry = models.DateField()
     
 class FeedPost(Post):
-    test = models.CharField(max_length=150, default='SOME STRING')
+    test = models.CharField(max_length=150)
     
     
 class ServicePost(Post):
-    title = models.CharField(max_length=150, default='SOME STRING')
-    cost = models.IntegerField(default='SOME STRING')
-    startDate = models.DateField(default='SOME STRING')
-    endDate = models.DateField(default='SOME STRING')
+    title = models.CharField(max_length=150)
+    cost = models.IntegerField(blank=True)
+    startDate = models.DateField()
+    endDate = models.DateField()
 
 
 class User(models.Model):
@@ -37,14 +37,13 @@ class User(models.Model):
     Model representing a user.
     """
     signUpDate = models.DateField()
-    #MapPosts = models.ForeignKey('MapPost', on_delete=models.CASCADE, default='')
     lname = models.CharField(max_length=45)
     fname = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
     password = models.CharField(max_length=45)
-    pets = models.ForeignKey('Pet',on_delete=models.CASCADE)
-    friends = models.ManyToManyField('User')
-    settings = models.CharField(max_length=45)
+    pets = models.ForeignKey('Pet',on_delete=models.CASCADE, blank=True)
+    friends = models.ManyToManyField('User', blank=True)
+    settings = models.CharField(max_length=45,default='')
 
 
 class Pet(models.Model):
@@ -60,8 +59,8 @@ class Comment(models.Model):
     """
     Model representing a pet.
     """
-    comment = models.TextField(max_length=400, help_text="What are your thoughts..")
-    
+    text = models.TextField(max_length=400, help_text="What are your thoughts..")
+    user = models.ForeignKey('User',on_delete=models.CASCADE, null=True)
     def __str__(self):
         """
         String for representing the Model object (in Admin site etc.)
