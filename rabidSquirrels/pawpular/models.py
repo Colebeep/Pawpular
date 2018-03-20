@@ -45,7 +45,18 @@ class Pet(models.Model):
     Model representing a pet.
     """
 
+    name = models.CharField(max_length=45)
+    birthday = models.DateField('Birthday', null=True, blank=True)
+    owner = models.ForeignKey('User', on_delete=models.CASCADE)
+
 class Comment(models.Model):
     """
     Model representing a pet.
     """
+    comment = models.TextField(max_length=400, help_text="What are your thoughts..")
+    
+    def __str__(self):
+        """
+        String for representing the Model object (in Admin site etc.)
+        """
+        return self.comment
