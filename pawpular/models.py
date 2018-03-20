@@ -35,6 +35,15 @@ class User(models.Model):
     """
     Model representing a user.
     """
+    signUpDate = models.DateField()
+    posts = 
+    lname = models.CharField(max_length=45)
+    fname = models.CharField(max_length=45)
+    email = models.CharField(max_length=45)
+    password = models.CharField()
+    pets
+    friends
+    settings = models.CharField()
 
 
 class Pet(models.Model):
