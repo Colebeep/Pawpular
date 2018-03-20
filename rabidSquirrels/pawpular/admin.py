@@ -1,6 +1,6 @@
 from django.contrib import admin
-from pawpular.models import Post, User, Pet, Comment
+from .models import MapPost, User, Pet, Comment
 
 # Register your models here.
-myModels = [Post, User, Pet, Comment]
+myModels = [MapPost, User, Pet, Comment]
 admin.site.register(myModels)

@@ -1,28 +1,35 @@
 from django.db import models
-
-POST_TYPES = (
-  ('f', 'FEED'),
-  ('s', 'SERVICE'),
-  ('m', 'MAP')
-)
+import uuid
 
 class Post(models.Model):
     """
     Model representing a map post
     """
-    type = models.CharField(choices=POST_TYPES, max_length=1)
     createdBy = models.ForeignKey('User', on_delete=models.CASCADE)
-    title = models.CharField(max_length=150)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     text = models.CharField(max_length=150)
-    image = models.ImageField(max_length=500)
+    #image = models.ImageField(max_length=500)
     createdOn = models.DateField()
-    latitude = models.CharField(max_length=45)
-    longitude = models.CharField(max_length=45)
+    class Meta:
+        abstract = True
+
+
+
+class MapPost(Post):
+    title = models.CharField(max_length=150, default='')
+    latitude = models.CharField(max_length=45, default='')
+    longitude = models.CharField(max_length=45, default='')
     expiry = models.DateField()
-    comments = models.ForeignKey('Comment', on_delete=models.CASCADE)
-    cost = models.IntegerField()
-    startDate = models.DateField()
-    endDate = models.DateField()
+    
+class FeedPost(Post):
+    test = models.CharField(max_length=150, default='SOME STRING')
+    
+    
+class ServicePost(Post):
+    title = models.CharField(max_length=150, default='SOME STRING')
+    cost = models.IntegerField(default='SOME STRING')
+    startDate = models.DateField(default='SOME STRING')
+    endDate = models.DateField(default='SOME STRING')
 
 
 class User(models.Model):
@@ -30,13 +37,13 @@ class User(models.Model):
     Model representing a user.
     """
     signUpDate = models.DateField()
-    posts = models.ForeignKey('Post', on_delete=models.CASCADE)
+    #MapPosts = models.ForeignKey('MapPost', on_delete=models.CASCADE, default='')
     lname = models.CharField(max_length=45)
     fname = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
     password = models.CharField(max_length=45)
     pets = models.ForeignKey('Pet',on_delete=models.CASCADE)
-    friends = models.ForeignKey('User', on_delete=models.CASCADE)
+    friends = models.ManyToManyField('User')
     settings = models.CharField(max_length=45)
 
 
