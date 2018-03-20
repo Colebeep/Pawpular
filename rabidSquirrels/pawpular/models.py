@@ -14,7 +14,7 @@ class Post(models.Model):
     createdBy = models.ForeignKey('User', on_delete=models.CASCADE)
     title = models.CharField(max_length=150)
     text = models.CharField(max_length=150)
-    image = '''idk how to do this one'''
+    image = models.ImageField(max_length=500)
     createdOn = models.DateField()
     latitude = models.CharField(max_length=45)
     longitude = models.CharField(max_length=45)
