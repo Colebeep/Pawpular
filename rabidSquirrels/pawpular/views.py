@@ -4,3 +4,10 @@ from django.shortcuts import render
 
 
 from .models import Comment, Pet, User, Post
+
+def index(request):
+    return render(
+        request,
+        'index.html',
+        context={},
+    )
