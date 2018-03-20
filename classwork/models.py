@@ -59,6 +59,9 @@ class Pet(models.Model):
     """
     Model representing a pet.
     """
+    name = models.CharField(max_length=45)
+    birthday = models.DateField('Birthday', null=True, blank=True)
+    owner = models.ForeignKey('User', on_delete=models.CASCADE)
 
 class Comment(models.Model):
     """
