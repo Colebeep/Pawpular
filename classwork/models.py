@@ -59,8 +59,10 @@ class Pet(models.Model):
     """
     Model representing a pet.
     """
+    model=models.ManyToManyField(User, help_text='pet is a user')
 
 class Comment(models.Model):
     """
     Model representing a pet.
     """
+    
