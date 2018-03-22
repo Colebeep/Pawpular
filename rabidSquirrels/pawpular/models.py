@@ -41,7 +41,7 @@ class User(models.Model):
     fname = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
     password = models.CharField(max_length=45)
-    pets = models.ForeignKey('Pet',on_delete=models.CASCADE, blank=True)
+    pets = models.ForeignKey('Pet',on_delete=models.CASCADE, blank=True, null=True)
     friends = models.ManyToManyField('User', blank=True)
     settings = models.CharField(max_length=45,default='')
 
