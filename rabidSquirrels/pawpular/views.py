@@ -1,9 +1,9 @@
 from django.shortcuts import render
-
+from django.views import generic
 # Create your views here.
 
 
-from .models import Comment, Pet, User, Post
+from .models import Comment, Pet, User, MapPost , ServicePost , FeedPost
 
 def index(request):
     num_pets=Pet.objects.all().count()
@@ -13,12 +13,18 @@ def index(request):
         context={},
     )
 
+class Chat(generic.ListView):
+    model = FeedPost
+
 def chat(request):
     return render(
         request,
         'chat.html',
         context={},
     )
+
+class Map(generic.ListView):
+    model = MapPost
 
 def map(request):
     return render(
@@ -27,12 +33,18 @@ def map(request):
         context={},
     )
 
+class Profile(generic.ListView):
+    model = User
+
 def profile(request):
     return render(
         request,
         'profile.html',
         context={},
     )
+
+class Services(generic.ListView):
+    model = ServicePost
 
 def services(request):
     return render(

@@ -4,9 +4,9 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('', views.chat, name='chat'),
-    path('', views.map, name='map'),
-    path('', views.profile, name='profile'),
-    path('', views.services, name='services'),
-    path('', views.settings, name='settings'),
+    path('chat/', views.chat, name='chat'),
+    path('map/', views.map, name='map'),
+    path('profile/', views.profile, name='profile'),
+    path('services/', views.services, name='services'),
+    path('settings/', views.settings, name='settings'),
 ]
