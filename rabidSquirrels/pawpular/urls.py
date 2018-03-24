@@ -11,7 +11,7 @@ urlpatterns = [
 
 
     path('map/', views.Map.as_view(), name='map'),
-    path('profile/', views.profile, name='profile'),
+    path('profile/', views.Profile.as_view(), name='profile'),
 
 
 

@@ -49,7 +49,7 @@ class User(models.Model):
 class Pet(models.Model):
     """
     Model representing a pet.
-        -the name and owner i think should be required fields
+        -the species should be a required field
 
     """
 
@@ -60,7 +60,7 @@ class Pet(models.Model):
 class Comment(models.Model):
     """
     Model representing a pet. 
-        -We should also include image fields for the future
+        -We should also include an optional image field in future
     """
 
 
