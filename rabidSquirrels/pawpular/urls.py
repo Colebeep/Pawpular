@@ -10,7 +10,7 @@ urlpatterns = [
     path('chat/', views.Chat.as_view(), name='chat'),
 
 
-    path('map/', views.map, name='map'),
+    path('map/', views.Map.as_view(), name='map'),
     path('profile/', views.profile, name='profile'),
 
 

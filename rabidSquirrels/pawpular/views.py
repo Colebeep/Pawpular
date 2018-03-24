@@ -26,12 +26,12 @@ class Chat(generic.ListView):
 class Map(generic.ListView):
     model = MapPost
 
-def map(request):
-    return render(
-        request,
-        'map.html',
-        context={},
-    )
+# def map(request):
+#     return render(
+#         request,
+#         'map.html',
+#         context={},
+#     )
 
 class Profile(generic.ListView):
     model = User
