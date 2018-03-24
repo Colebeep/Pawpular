@@ -36,8 +36,12 @@ class Map(generic.ListView):
 class Profile(generic.ListView):
     model = User
 
-    # def get_queryset(self):
-    #     return 
+# def profile(request):
+#     return render(
+#         request,
+#         'profile.html',
+#         context={},
+#     )
 
 class Services(generic.ListView):
     model = ServicePost
