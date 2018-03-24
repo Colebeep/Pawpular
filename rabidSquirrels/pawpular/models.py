@@ -22,6 +22,9 @@ class MapPost(Post):
     expiry = models.DateField()
     
 class FeedPost(Post):
+    """
+     -We should also include an optional image field in future
+    """
     test = models.CharField(max_length=150)
     
     
@@ -40,10 +43,18 @@ class User(models.Model):
     lname = models.CharField(max_length=45)
     fname = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
+    #why is there a max length on the password?
+    #pets = models.ForeignKey('pet',on_delete=models.CASCADE, blank=False)
     password = models.CharField(max_length=45)
-    pets = models.ForeignKey('Pet',on_delete=models.CASCADE, blank=True, null=True)
+    
     friends = models.ManyToManyField('User', blank=True)
-    settings = models.CharField(max_length=45,default='')
+
+    status=(
+        ('1','on'),
+        ('0','off'),
+        )
+
+    settings = models.CharField(max_length=1,choices=status, blank=False,default='1',help_text = 'settings status status')
 
 
 class Pet(models.Model):
@@ -60,7 +71,6 @@ class Pet(models.Model):
 class Comment(models.Model):
     """
     Model representing a pet. 
-        -We should also include an optional image field in future
     """
 
 
