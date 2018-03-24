@@ -12,6 +12,12 @@ urlpatterns = [
 
     path('map/', views.map, name='map'),
     path('profile/', views.profile, name='profile'),
-    path('services/', views.services, name='services'),
+
+
+
+    path('services/', views.Services.as_view(), name='services'),
+
+
+
     path('settings/', views.settings, name='settings'),
 ]

@@ -67,11 +67,12 @@
                     <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Taka_Shiba.jpg" class="rounded" style="width:80px">
                 </div>
                 <div class="media-body">
-                    <h4 class="media-heading"> {{post.createdBy.fname}} <span class="badge badge-secondary">New</span></h4>
+                    <h4 class="media-heading"> {{post.createdBy.fname}} {{post.createdBy.lname}} <!--span class="badge badge-secondary">New</span--></h4>
                     <p>{{post.text}}</p>
+                    <p>{{post.createdOn}}</p>
             
                     <button type="button" class="btn btn-primary">Like</button>
-                    <button type="button" class="btn btn-secondary">Hate</button>
+                    <!--button type="button" class="btn btn-secondary">Hate</button-->
                     <button type="button" class="btn btn-success">Comment</button>
             
                 </div>

@@ -46,12 +46,12 @@ def profile(request):
 class Services(generic.ListView):
     model = ServicePost
 
-def services(request):
-    return render(
-        request,
-        'services.html',
-        context={},
-    )
+# def services(request):
+#     return render(
+#         request,
+#         'services.html',
+#         context={},
+#     )
 
 def settings(request):
     return render(

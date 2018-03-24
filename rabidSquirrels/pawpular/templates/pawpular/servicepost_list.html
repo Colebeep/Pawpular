@@ -1,7 +1,8 @@
 <html>
     <head>
+        <title>Bootstrap Example</title>
         <meta charset="utf-8">
-        <link href="style.css" type="text/css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
@@ -37,21 +38,54 @@
                 </ul>
             </div>
         </nav>
-            <div style="padding-left:20%;">
+
+
+
+
+        <div class="container">
+            <h1 style="padding-top:2.5%;">Pet Services</h1>
+            <br>
+            <hr>
+        </div>
+
+        {% for service in servicepost_list %}
+            <section style="padding:1%;">
+                <div class="container">
+
+                    <h2>{{service.title}} - <a style = "color:green">${{service.cost}}</a></h2>
+
+                    <div class = "container">
+
+                        <a href="#" onclick="return false;" data-toggle="popover" title="Contact:" data-content="{{service.createdBy.email}}">{{service.createdBy.fname}} {{service.createdBy.lname}}</a>
+                        
+                        <div>
+                            <p>{{service.text}}</p>
+                            <p><a style="color:blue">{{service.startDate}}</a> - <a style="color:red">{{service.endDate}}</a></p>
+                        </div>
+
+                    </div>
+                    
+                    <br>
+                    <hr>
                     
                 </div>
+            </section>
+        {% endfor %}
 
-         <header>
-                <h1>Pet Services</h1>
-        </header>
+        <!--
 
-         <section>
+
+                in case we wish to revert back to what was previously here, out of respect for the work that was, it's commented out.
+                personally i think it has a better organizational idea. i like how adoptions and pet sitting...etc are separated, but currently the model is not built to support this.
+                            -s
+
+
             <h2>Adoption</h2>
             <ul>
                 <li><a href="#">10 week old Golden Retriever to a good home</a></li>        
                 <li><a href="#">Seeking new home for baby bunnies</a></li>                
                 <li><a href="#">Puppies for adoption!</a></li>                
-                <li><a href="#">Looking to adopt kittens</a></li>                                
+                <li><a href="#">Looking to adopt kittens</a></li>    
             </ul>
             <h2>Pet Sitting</h2>
             <ul>
@@ -72,7 +106,16 @@
                 <li><a href="#">Looking for cute pictures of your pet? Look no further!</a></li>        
                 <li><a href="#">We photograph dogs, cats and bunnies! Come on in!</a></li>        
             </ul>
+
+        -->
+
         </section>
 
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="popover"]').popover();   
+            });
+        </script>
+
     </body>
-    </html>
+</html>
