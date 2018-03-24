@@ -49,20 +49,27 @@ class User(models.Model):
 class Pet(models.Model):
     """
     Model representing a pet.
+        -the name and owner i think should be required fields
+
     """
 
-    name = models.CharField(max_length=45)
+    name = models.CharField(max_length=45, blank=False)
     birthday = models.DateField('Birthday', null=True, blank=True)
-    owner = models.ForeignKey('User', on_delete=models.CASCADE)
+    owner = models.ForeignKey('User', on_delete=models.CASCADE, blank=False)
 
 class Comment(models.Model):
     """
-    Model representing a pet.
+    Model representing a pet. 
+        -We should also include image fields for the future
     """
+
+
     text = models.TextField(max_length=400, help_text="What are your thoughts..")
-    user = models.ForeignKey('User',on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey('User',on_delete=models.CASCADE, null=True, blank=False)
+
+
     def __str__(self):
         """
         String for representing the Model object (in Admin site etc.)
         """
-        return self.comment
+        return self.text

@@ -16,12 +16,12 @@ def index(request):
 class Chat(generic.ListView):
     model = FeedPost
 
-def chat(request):
-    return render(
-        request,
-        'chat.html',
-        context={},
-    )
+# def chat(request):
+#     return render(
+#         request,
+#         'chat.html',
+#         context={},
+#     )
 
 class Map(generic.ListView):
     model = MapPost

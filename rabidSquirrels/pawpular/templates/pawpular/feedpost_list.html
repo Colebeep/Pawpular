@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+ 
+</head>
+<body data-spy="scroll" data-target=".navbar">
+
+
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Pawpular</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'map' %}">Map</a>
+                </li>
+                <li class="active">
+                    <a class="nav-link" href="{% url 'chat' %}">Feed</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'services' %}">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'settings' %}">Settings</a>
+                </li>
+            </ul>
+        </div>
+        
+    </nav>
+
+
+
+
+
+
+
+    <!-- this is where the feed posts will be amalgomated and rendered. -->
+    <div class="container" style = "padding-left: 15%;padding-right:15%;padding-top:3%;padding-bottom:10%;">
+        <!-- this for loop loops through everything in the feedpost list and puts the text field into the template below -->
+        {% for post in feedpost_list %}
+        <!-- Left-aligned media object -->
+        <div style="padding-bottom:5%;">
+            <div class="media" >
+                <div class="media-left media-0top">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Taka_Shiba.jpg" class="rounded" style="width:80px">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading"> {{post.createdBy.fname}} <span class="badge badge-secondary">New</span></h4>
+                    <p>{{post.text}}</p>
+            
+                    <button type="button" class="btn btn-primary">Like</button>
+                    <button type="button" class="btn btn-secondary">Hate</button>
+                    <button type="button" class="btn btn-success">Comment</button>
+            
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+<style>
+    h1.title{
+        margin: auto;
+        text-align:center;
+    }
+    div.media{
+        padding-top:1%;
+        padding-left:1%;
+        padding-bottom:5%;border:solid .5px;border-radius: 5px;
+    }
+    div.media-body{
+        padding-bottom: 0%;
+    }
+    img{
+        padding:2px;
+    }
+</style>
