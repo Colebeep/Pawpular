@@ -42,28 +42,69 @@
 
         <section>
             <h1 class="card text-center"><center>Settings</center></h1>
+            <div align="center" style="padding:3%;">
+
+                <img src= "https://cdn3.iconfinder.com/data/icons/fez/512/FEZ-04-256.png">
+                    
+            </div>
             <div class="row">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-3">
-                    <div class="card text-center">
+                    <div class="card-header text-center">
                         <h2 class="card-title">Account</h2>
-                        <div class="btn btn-primary">Update Username</div>
-                        <div class="btn btn-primary">Update Password</div>
-                        <div class="btn btn-primary">Update Email</div>
+                    </div>
+                    <div class="card">
+                        <div class="btn btn-info">Update Username</div>
+                        <div class="btn btn-info">Update Password</div>
+                        <div class="btn btn-info">Update Email</div>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <div class="card text-center">
-                        <h2 class="card-title">Privacy</h2>
-                        <div class="btn btn-primary">Location</div>
-                        <div class="btn btn-primary">Block User</div>
+                        <h2 class="card-header">Privacy</h2>
+                        <div class="card-body">
+
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myModal">
+                                        Location
+                            </button>
+
+
+                                <!-- The Modal -->
+                                <div class="modal fade" id="myModal">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                        <h4 class="modal-title">Modal Heading</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                        Modal body..
+                                        </div>
+                                        
+                                    </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            <div class="btn btn-warning">Block User</div>
+
+                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="card text-center">
+                    <div class="card-header text-center">
                         <h2 class="card-title">Notifications</h2>
-                        <div class="btn btn-primary">Email Settings</div>
-                        <div class="btn btn-primary">Mobile Settings</div>
+                    </div>
+                    <div class="card">
+                        <div class="btn btn-dark">Email Settings</div>
+                        <div class="btn btn-dark">Mobile Settings</div>
                     </div>
                 </div>
                 <div class ="col-sm-1"></div>
