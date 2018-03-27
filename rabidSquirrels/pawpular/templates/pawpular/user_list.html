@@ -1,43 +1,5 @@
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link href="style.css" type="text/css" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    </head>
-    
-    <body>
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">Pawpular</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'index' %}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'map' %}">Map</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'chat' %}">Feed</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'services' %}">Services</a>
-                    </li>
-                    <li class="active">
-                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'settings' %}">Settings</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
+{% extends "base_generic.html" %}
+    {% block content %}
         <div style="padding-left:30%;padding-right:30%;padding-top:2.5%;padding-bottom:5%;">
             <header style="padding-bottom:2.5%;">
                 <h1>Profile page</h1>
@@ -56,13 +18,13 @@
             <hr>
             <br>
 
-            <!-- 
-                will need a for loop for this one 
+            <!--
+                will need a for loop for this one
                 if i were to imagine how this would go.../
                     the for loop would access all of ryan's pets (the one to many relationship)
                     and place them into the following paragraphs
                     then access specific data from the pet objects pointed to by the pet reference
-                    also we should configure the models to accept many images of these animals so we can do carousel type image galeries 
+                    also we should configure the models to accept many images of these animals so we can do carousel type image galeries
 
                 also can someone figure out how to make the pets and comments centered without centering the text?
             
@@ -96,7 +58,7 @@
                     <p><a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo4">Ryan's Guinea Pig Grub</a></p>
                         <div id="demo4" class="collapse">
                             <img src="https://fthmb.tqn.com/QuozwiS5KciICtQZNjfYwedhwAA=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/close-up-of-guinea-pig-eating-cucumber-on-floorboard-675608313-57fff1de5f9b5805c2b14e41.jpg" width="400px">
-                            <p>11/25/2017</p>                        
+                            <p>11/25/2017</p>
                         </div>
                 </h5>
             </div>
@@ -105,8 +67,8 @@
             <br>
             <hr>
             
-            <!-- 
-                will need a for loop for this one 
+            <!--
+                will need a for loop for this one
 
                 i propose that the comments have a required date field.
                 same deal with the pets. one to many relationship
@@ -137,7 +99,7 @@
             </div>
         </div>
 
-
+{% endblock %}
 
 
 <!-- i left ryan's original code in here so if incase we wish to reuse some of it without having to go through the trouble of reverting
@@ -174,7 +136,4 @@
         </section>
     -->
         
-                                       
-
-    </body>
-    </html>
+                                     
