@@ -8,7 +8,7 @@ class Post(models.Model):
     createdBy = models.ForeignKey('User', on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     text = models.CharField(max_length=150)
-    #image = models.ImageField(max_length=500)
+    image = models.ImageField(upload_to='uploads/',blank = True)
     createdOn = models.DateField()
     class Meta:
         abstract = True
@@ -43,12 +43,12 @@ class User(models.Model):
     lname = models.CharField(max_length=45)
     fname = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
-    #why is there a max length on the password?
+    image = models.ImageField(upload_to='uploads/',blank = True)
     #pets = models.ForeignKey('pet',on_delete=models.CASCADE, blank=False)
     password = models.CharField(max_length=45)
-    
     friends = models.ManyToManyField('User', blank=True)
 
+    #we need more of these sort of things for the settings page
     status=(
         ('1','on'),
         ('0','off'),
@@ -60,20 +60,25 @@ class User(models.Model):
 class Pet(models.Model):
     """
     Model representing a pet.
-        -the species should be a required field
+        -the pet type should be a required field
+        -dog
+        -cat
+        -rabbit
+        -... you get the idea
 
     """
 
+    image = models.ImageField(upload_to='uploads/',blank = True)
     name = models.CharField(max_length=45, blank=False)
     birthday = models.DateField('Birthday', null=True, blank=True)
     owner = models.ForeignKey('User', on_delete=models.CASCADE, blank=False)
 
 class Comment(models.Model):
     """
-    Model representing a pet. 
+    Model representing a comment
     """
 
-
+    
     text = models.TextField(max_length=400, help_text="What are your thoughts..")
     user = models.ForeignKey('User',on_delete=models.CASCADE, null=True, blank=False)
 

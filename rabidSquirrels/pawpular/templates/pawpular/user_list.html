@@ -37,16 +37,110 @@
                 </ul>
             </div>
         </nav>
-            <div style="padding-left:20%;">
+
+        <div style="padding-left:30%;padding-right:30%;padding-top:2.5%;padding-bottom:5%;">
+            <header style="padding-bottom:2.5%;">
+                <h1>Profile page</h1>
+            </header>
+
+            <div >
+                
+                    <img src="https://scontent.fzty2-1.fna.fbcdn.net/v/t31.0-8/21457975_10208194978032591_6532285477932223111_o.jpg?_nc_cat=0&oh=6e586374cf712cbcb9ff410425bf901c&oe=5B73999C" height = "350px" width="300px">
+                    <div class="card-body">
+                    <h2 class="card-title">Ryan Mahan</h2>
+                    <h3>rlmahan@fightme.com</h3>
+                    </div>
+
+            </div>
+
+            <hr>
+            <br>
+
+            <!-- 
+                will need a for loop for this one 
+                if i were to imagine how this would go.../
+                    the for loop would access all of ryan's pets (the one to many relationship)
+                    and place them into the following paragraphs
+                    then access specific data from the pet objects pointed to by the pet reference
+                    also we should configure the models to accept many images of these animals so we can do carousel type image galeries 
+
+                also can someone figure out how to make the pets and comments centered without centering the text?
+            
+            -->
+            
+            <div>
+                <h2>Pets</h2>
+                <h5>
+                    <p><a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo1">Ryan's Rabbit Rabbert</a></p>
+                        <div id="demo1" class="collapse">
+                            <img src="https://assets.atlasobscura.com/article_images/52211/image.jpg" width="400px">
+                            <p>11/25/2017</p>
+                        </div>
+
+
                     
+                    <p><a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo2">Ryan's Dog Dabbert</a></p>
+                        <div id="demo2" class="collapse">
+                            <img src="https://cuteorfunnyvideos.files.wordpress.com/2015/03/cute-siberian-husky-puppy-sitting-on-grass-puppies-wallpaper.jpg" width="400px">
+                            <p>11/25/2017</p>
+                        </div>
+
+
+                    <p><a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo3">Ryan's Cat Cabbert</a></p>
+                        <div id="demo3" class="collapse">
+                            <img src="http://www.petspet.org/wp-content/uploads/2015/06/Cute-Cats-cats-33440930-1280-800.jpg" width="400px">
+                            <p>11/25/2017</p>
+                        </div>
+
+
+                    <p><a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo4">Ryan's Guinea Pig Grub</a></p>
+                        <div id="demo4" class="collapse">
+                            <img src="https://fthmb.tqn.com/QuozwiS5KciICtQZNjfYwedhwAA=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/close-up-of-guinea-pig-eating-cucumber-on-floorboard-675608313-57fff1de5f9b5805c2b14e41.jpg" width="400px">
+                            <p>11/25/2017</p>                        
+                        </div>
+                </h5>
+            </div>
+
+
+            <br>
+            <hr>
+            
+            <!-- 
+                will need a for loop for this one 
+
+                i propose that the comments have a required date field.
+                same deal with the pets. one to many relationship
+                loop through the comments made by this particular user and display it in the following divs
+                also include time posted.
+            -->
+
+            <div >
+
+                <h2>Comments</h2>
+                <div style="padding:2%;">
+                    <div class="card" >
+                        <div class="container">
+                            Dabbert bit me! Going to the hospital, wish me luck
+                        </div>
+                    </div>
                 </div>
 
-         <header>
-            <h1>Ryan Mahan</h1>
-        </header>
+                <div style="padding:2%;">
+                    <div class='card'>
+                        <div class='container'>
+                            Going to feed my pets! Crabbert looks particularly hungry today.
+                        </div>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
 
 
 
+
+<!-- i left ryan's original code in here so if incase we wish to reuse some of it without having to go through the trouble of reverting
         <div class='row'>
           <div class='column'>
             <img src='pictures/ryan.jpg'></img>
@@ -77,8 +171,9 @@
                 Going to feed my pets! Crabbert looks particularly hungry today.
               </div>
             </div>
-          
         </section>
+    -->
+        
                                        
 
     </body>
