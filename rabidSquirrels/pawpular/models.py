@@ -16,6 +16,7 @@ class Post(models.Model):
 
 
 class MapPost(Post):
+    imageUrl = models.CharField(max_length=1000, default='')
     title = models.CharField(max_length=150, default='')
     latitude = models.CharField(max_length=45, default='')
     longitude = models.CharField(max_length=45, default='')
