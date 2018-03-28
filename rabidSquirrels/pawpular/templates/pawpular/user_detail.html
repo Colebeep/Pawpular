@@ -7,10 +7,10 @@
 
             <div >
                 
-                    <img src="https://scontent.fzty2-1.fna.fbcdn.net/v/t31.0-8/21457975_10208194978032591_6532285477932223111_o.jpg?_nc_cat=0&oh=6e586374cf712cbcb9ff410425bf901c&oe=5B73999C" class="rounded" height = "350px" width="300px">
+                    <img src="http://127.0.0.1:8000/pawpular/{{user.image}}" class="rounded" height = "350px" width="300px">
                     <div class="card-body">
-                    <h2 class="card-title">Ryan Mahan</h2>
-                    <h3>rlmahan@fightme.com</h3>
+                    <h2 class="card-title">{{user.fname}} {{user.lname}}</h2>
+                    <h3>{{user.email}}</h3>
                     </div>
 
             </div>
@@ -31,38 +31,18 @@
             -->
             
             <div>
-                <h2>Pets - <a style="color:purple">4</a></h2>
+                <h2>Pets</h2>
+                {% for pet in user.pets.all %}
                 <h5>
-                    <p><a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo1">Ryan's Rabbit Rabbert</a></p>
+                    <p><!-- comment out a tag for for loop<a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo1">{{user.fname}}'s pet--> {{pet.name}}</p>
                         <div id="demo1" class="collapse">
                             <img src="https://assets.atlasobscura.com/article_images/52211/image.jpg" width="400px">
-                            <p>11/25/2017</p>
-                        </div>
-
-
-                    
-                    <p><a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo2">Ryan's Dog Dabbert</a></p>
-                        <div id="demo2" class="collapse">
-                            <img src="https://cuteorfunnyvideos.files.wordpress.com/2015/03/cute-siberian-husky-puppy-sitting-on-grass-puppies-wallpaper.jpg" width="400px">
-                            <p>11/25/2017</p>
-                        </div>
-
-
-                    <p><a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo3">Ryan's Cat Cabbert</a></p>
-                        <div id="demo3" class="collapse">
-                            <img src="http://www.petspet.org/wp-content/uploads/2015/06/Cute-Cats-cats-33440930-1280-800.jpg" width="400px">
-                            <p>11/25/2017</p>
-                        </div>
-
-
-                    <p><a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo4">Ryan's Guinea Pig Grub</a></p>
-                        <div id="demo4" class="collapse">
-                            <img src="https://fthmb.tqn.com/QuozwiS5KciICtQZNjfYwedhwAA=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/close-up-of-guinea-pig-eating-cucumber-on-floorboard-675608313-57fff1de5f9b5805c2b14e41.jpg" width="400px">
-                            <p>11/25/2017</p>
+                            <p>{{pet.birthday}}</p>
                         </div>
                 </h5>
+                {% endfor %}
             </div>
-
+            
 
             <br>
             <hr>
@@ -77,24 +57,18 @@
             -->
 
             <div >
-
-                <h2>Comments</h2>
+                <h2>Posts</h2>
+                {% for post in user.feedPosts.all %}
                 <div style="padding:2%;">
                     <div class="card" >
                         <div class="container">
-                            Dabbert bit me! Going to the hospital, wish me luck
+                            <h5>{{post.title}}</h5>
+                            <hr>
+                            <p>{{post.text}}</p>
                         </div>
                     </div>
                 </div>
-
-                <div style="padding:2%;">
-                    <div class='card'>
-                        <div class='container'>
-                            Going to feed my pets! Crabbert looks particularly hungry today.
-                        </div>
-                    </div>
-                </div>
-                
+                {% endfor %}      
 
             </div>
         </div>
