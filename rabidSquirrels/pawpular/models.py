@@ -4,7 +4,7 @@ import uuid
 
 class Post(models.Model):
     """
-    Model representing a map post
+    abstract representing a any post
     """
     createdBy = models.ForeignKey('User', on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
@@ -88,7 +88,7 @@ class Pet(models.Model):
     owner = models.ForeignKey('User', on_delete=models.CASCADE, blank=False)
 
     def __str__(self):
-        return self.name    
+        return self.name
 
 class Comment(models.Model):
     """
