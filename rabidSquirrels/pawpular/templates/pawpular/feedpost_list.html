@@ -7,12 +7,12 @@
         <!-- Left-aligned media object -->
         <div style="padding-bottom:5%;">
             <div class="media" >
-                <div class="media-left media-0top">
-                    <img src="https://www.illibraio.it/wp-content/uploads/2017/02/00000000000000216227-3.jpg" class="rounded" style="width:80px">
+                <div class="media-left media-top">
+                    <img src="http://127.0.0.1:8000/pawpular/{{post.createdBy.image}}" class="media-object rounded" style="width:70px">
                 </div>
                 <div class="media-body">
 
-                    <h4 class="media-heading" style="padding-top:2%;"> {{post.createdBy.fname}} {{post.createdBy.lname}} <!--span class="badge badge-secondary">New</span--></h4>
+                    <h4 class="media-heading" style="padding-top:2%;"><a href="{{post.createdBy.get_absolute_url}}"> {{post.createdBy.fname}} {{post.createdBy.lname}} </a><!--span class="badge badge-secondary">New</span--></h4>
                     <p>{{post.text}}</p>
                     <p style = "color:blue">{{post.createdOn}}</p>
             
@@ -39,7 +39,10 @@
         padding-bottom: 0%;
     }
     img{
+        margin-right:20px;
+        margin-left:5px;
         padding:2px;
+        
     }
 </style>
 {% endblock %}

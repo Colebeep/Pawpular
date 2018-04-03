@@ -33,9 +33,18 @@ class Map(generic.ListView):
 #         context={},
 #     )
 
-class Profile(generic.ListView):
+class Profile(generic.DetailView):
     model = User
+        
+    def profile(self, request, pk): 
 
+        user = User.objects.get(pk=pk)
+        pet_amount = user.pets.all().length()
+        return render(
+            request,
+            'pawpular/user_detail.html',
+            context={'user':user, 'pet_amount': pet_amount}
+        )
 # def profile(request):
 #     return render(
 #         request,

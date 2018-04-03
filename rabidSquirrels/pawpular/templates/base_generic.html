@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   {% block title %} <title>Pawpular</title> {% endblock %}
@@ -36,7 +35,7 @@
                         <a class="nav-link" href="{% url 'services' %}">Services</a>
                     </li>
                     <li {% if request.resolver_match.url_name == 'profile' %} class="active" {% endif %}>
-                        <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                        <a class="nav-link" href="/pawpular/profile/36f1cfcd-ee16-41e2-a120-cb09a24b4e47">Profile</a>
                     </li>
                     <li {% if request.resolver_match.url_name == 'settings' %} class="active" {% endif %}>
                         <a class="nav-link" href="{% url 'settings' %}">Settings</a>
