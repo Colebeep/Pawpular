@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 import uuid
 
 class Post(models.Model):
@@ -58,6 +59,13 @@ class User(models.Model):
     mapPosts = models.ManyToManyField('MapPost', blank=True)
     servicePosts = models.ManyToManyField('ServicePost', blank=True)
     #we need more of these sort of things for the settings page
+
+
+#this is for the user pointer to the user created in the database. here will store the particulars
+# user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)
+
+
+
     status=(
         ('1','on'),
         ('0','off'),
