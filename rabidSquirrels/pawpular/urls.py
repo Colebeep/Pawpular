@@ -14,6 +14,6 @@ urlpatterns = [
     path('services/', views.Services.as_view(), name='services'),
     path('profile/<uuid:pk>', views.Profile.as_view(), name='profile'),
 
-    #these pageds do not.
+    #these pageds do not it should tho. every user has their own security settings.
     path('settings/', views.settings, name='settings'),
 ] + static('uploads/', document_root=settings.MEDIA_ROOT)
