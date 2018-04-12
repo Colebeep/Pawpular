@@ -20,9 +20,6 @@ class Post(models.Model):
     class Meta:
         abstract = True
 
-
-
-
 class MapPost(Post):
     imageUrl = models.CharField(max_length=1000, default='')
     latitude = models.CharField(max_length=45, default='')
@@ -63,8 +60,6 @@ class User(models.Model):
 
 #this is for the user pointer to the user created in the database. here will store the particulars
 # user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)
-
-
 
     status=(
         ('1','on'),
