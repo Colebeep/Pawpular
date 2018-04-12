@@ -20,6 +20,7 @@ def index(request):
         context={},
     )
 
+
 class Chat(generic.ListView):
     model = FeedPost
 
