@@ -48,7 +48,6 @@ class User(models.Model):
     fname = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
     image = models.ImageField(upload_to='uploads/',blank = True)
-    #pets = models.ForeignKey('pet',on_delete=models.CASCADE, blank=False)
     password = models.CharField(max_length=45)
     friends = models.ManyToManyField('User', blank=True)
     pets = models.ManyToManyField('Pet', blank=True)

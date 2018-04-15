@@ -10,6 +10,8 @@ import datetime
 # Create your views here.
 
 from .models import Comment, Pet, User, MapPost , ServicePost , FeedPost
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
 
 @login_required
 def index(request):
@@ -23,6 +25,8 @@ def index(request):
 
 class Chat(generic.ListView):
     model = FeedPost
+    # fields = ['text']
+    # template_name_suffix = '_list'
 
 class Map(generic.ListView):
     model = MapPost
@@ -49,3 +53,6 @@ def settings(request):
         context={},
     )
 
+class ServiceCreate(CreateView):
+    model = ServicePost
+    fields = ['text','title','cost','startDate','endDate']
