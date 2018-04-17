@@ -62,7 +62,7 @@ class ServiceCreate(CreateView):
     model = ServicePost
     fields = ['text','title','cost','startDate','endDate']
 
-from .forms import makeMapPost
+from .forms import makeMapPost , makeFeedPost
 from django.contrib.auth import get_user
 
 def mappost_new(request):
@@ -82,3 +82,23 @@ def mappost_new(request):
     else:
         form = makeMapPost()
     return render(request,'pawpular/mappost_edit.html',{'form':form, })
+
+
+def feedpost_new(request):
+    if request.method == 'POST':
+        form = makeMapPost(request.POST)
+        
+        if form.is_valid():
+            #clean data
+            FeedPost = form.save(commit=False)
+            #MapPost.createdBy = get_user(request)
+            #need to fix the above line when ryan updates user
+            FeedPost.createdOn = datetime.date.today()
+            FeedPost.expiry = datetime.date.today() + datetime.timedelta(weeks=3)
+            #fix how image works maybe?
+            FeedPost.save()
+            return HttpResponseRedirect(reverse('map'))
+    else:
+        form = makeFeedPost(request.POST)
+    return render(request,'pawpular/feedpost_new.html',{'form':form, })
+        
