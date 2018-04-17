@@ -66,7 +66,7 @@ class Profile(models.Model):
         return self.user.last_name + ", " + self.user.first_name
 
     def get_absolute_url(self):
-        return reverse('profile', args=[str(self.uuid)])
+        return "/pawpular/profile/" + self.uuid.__str__()
 
 class Pet(models.Model):
     """

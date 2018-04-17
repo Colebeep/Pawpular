@@ -37,7 +37,7 @@
                     </li>
                     {% if user.is_authenticated %}
                     <li {% if request.resolver_match.url_name == 'profile' %} class="active" {% endif %}>
-                        <a class="nav-link" href="/pawpular/profile/36f1cfcd-ee16-41e2-a120-cb09a24b4e47">Profile</a>
+                        <a class="nav-link" href={{user.profile.get_absolute_url}} >Profile</a>
                     </li>
                     <li {% if request.resolver_match.url_name == 'settings' %} class="active" {% endif %}>
                         <a class="nav-link" href="{% url 'settings' %}">Settings</a>
