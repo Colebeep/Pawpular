@@ -38,13 +38,13 @@ class ServicePost(Post):
     endDate = models.DateField()
 
 
-class Profile(User):
+class Profile(models.Model):
     """
     Model representing a user.
     """
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     image = models.ImageField(upload_to='uploads/',blank = True)
-    friends = models.ManyToManyField('Profile', blank=True)
     pets = models.ManyToManyField('Pet', blank=True)
     feedPosts = models.ManyToManyField('FeedPost', blank=True)
     mapPosts = models.ManyToManyField('MapPost', blank=True)
@@ -63,7 +63,7 @@ class Profile(User):
     settings = models.CharField(max_length=1,choices=status, blank=False,default='1',help_text = 'settings status status')
 
     def __str__(self):
-        return self.lname + ", " + self.fname
+        return self.user.last_name + ", " + self.user.first_name
 
     def get_absolute_url(self):
         return reverse('profile', args=[str(self.uuid)])

@@ -18,6 +18,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_ROOT = BASE_DIR + '/uploads/'
 MEDIA_URL = 'http://localhost/uploads/'
 
+AUTH_PROFILE_MODULE = "pawpular.Profile"
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 

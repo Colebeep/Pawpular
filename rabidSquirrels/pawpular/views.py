@@ -27,6 +27,11 @@ class Chat(generic.ListView):
     model = FeedPost
     # fields = ['text']
     # template_name_suffix = '_list'
+    def chat(request):
+        return render(
+            request,
+            'pawpular/feedpost_list.html'
+        )
 
 class Map(generic.ListView):
     model = MapPost
