@@ -123,3 +123,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/'
+
+#MAP_WIDGETS = {
+#    "GoogleStaticMapWidget": (
+#        ("zoom", 15),
+#        ("size", "320x320"),
+#    ),
+#    "GoogleStaticMapMarkerSettings": (
+#        ("color", "black"),
+#    ),
+#    "GOOGLE_MAP_API_KEY": "AIzaSyDffvaqekist8fX5ISy_wyYq4Yvzr_s8x4"
+#}
