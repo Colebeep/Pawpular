@@ -15,7 +15,7 @@ urlpatterns = [
     path('profile/<uuid:pk>', views.profile_detail_view.as_view(), name='profile'),
 
 
-    path('create_service/', views.ServiceCreate.as_view(), name='service_create'),
+    path('services/new/', views.create_new_service, name='service_create'),
 
     #these pageds do not it should tho. every user has their own security settings.
     path('settings/', views.settings, name='settings'),

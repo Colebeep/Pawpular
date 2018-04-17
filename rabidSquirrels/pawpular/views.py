@@ -62,7 +62,11 @@ class ServiceCreate(CreateView):
     model = ServicePost
     fields = ['text','title','cost','startDate','endDate']
 
+<<<<<<< HEAD
 from .forms import makeMapPost , makeFeedPost
+=======
+from .forms import makeMapPost,makeServicePost
+>>>>>>> 37186dc68924b953e9127791d9ac64b0265d1fc9
 from django.contrib.auth import get_user
 
 def mappost_new(request):
@@ -84,6 +88,7 @@ def mappost_new(request):
     return render(request,'pawpular/mappost_edit.html',{'form':form, })
 
 
+<<<<<<< HEAD
 def feedpost_new(request):
     if request.method == 'POST':
         form = makeFeedPost(request.POST)
@@ -98,3 +103,21 @@ def feedpost_new(request):
         form = makeFeedPost(request.POST)
     return render(request,'pawpular/feedpost_new.html',{'form':form, })
         
+=======
+def create_new_service(request):
+    if request.method == 'POST':
+        form = makeServicePost(request.POST)
+
+        if(form.is_valid()):
+            service = form.save(commit = False)
+            service.createdOn = datetime.date.today()
+            # service.createdBy = get_user(request)
+            service.startDate = datetime.date.today()
+            service.endDate = datetime.date.today() + datetime.timedelta(weeks=3)
+
+            service.save()
+            return HttpResponseRedirect(reverse('services'))
+    else:
+       form=makeServicePost() 
+    return render(request,'pawpular/servicepost_form.html',{'form':form, })
+>>>>>>> 37186dc68924b953e9127791d9ac64b0265d1fc9
