@@ -62,7 +62,7 @@ class ServiceCreate(CreateView):
     model = ServicePost
     fields = ['text','title','cost','startDate','endDate']
 
-from .forms import makeMapPost
+from .forms import makeMapPost,makeServicePost
 from django.contrib.auth import get_user
 
 def mappost_new(request):
@@ -82,3 +82,21 @@ def mappost_new(request):
     else:
         form = makeMapPost()
     return render(request,'pawpular/mappost_edit.html',{'form':form, })
+
+
+def create_new_service(request):
+    if request.method == 'POST':
+        form = makeServicePost(request.POST)
+
+        if(form.is_valid()):
+            service = form.save(commit = False)
+            service.createdOn = datetime.date.today()
+            # service.createdBy = get_user(request)
+            service.startDate = datetime.date.today()
+            service.endDate = datetime.date.today() + datetime.timedelta(weeks=3)
+
+            service.save()
+            return HttpResponseRedirect(reverse('services'))
+    else:
+       form=makeServicePost() 
+    return render(request,'pawpular/servicepost_form.html',{'form':form, })

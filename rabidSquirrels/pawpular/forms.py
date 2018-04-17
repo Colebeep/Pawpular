@@ -2,13 +2,16 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 import datetime
-from .models import MapPost
+from .models import MapPost, ServicePost
 
-class makeServicePost(forms.Form):
+class makeServicePost(forms.ModelForm):
     """
     requires cost, duration, name, service type.
     i think the post should have a life time of three weeks.
     """
+    class Meta:
+        model = ServicePost
+        fields = ('cost','title','text','createdBy')
 
 #from mapwidgets.widgets import GoogleStaticMapWidget
 
