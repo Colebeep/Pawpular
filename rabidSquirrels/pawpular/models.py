@@ -7,7 +7,7 @@ class Post(models.Model):
     """
     abstract representing a any post
     """
-    createdBy = models.ForeignKey('User', on_delete=models.CASCADE)
+    createdBy = models.ForeignKey('Profile', on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     text = models.CharField(max_length=150)
     image = models.ImageField(upload_to='uploads/',blank = True)
@@ -38,18 +38,13 @@ class ServicePost(Post):
     endDate = models.DateField()
 
 
-class User(models.Model):
+class Profile(User):
     """
     Model representing a user.
     """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    signUpDate = models.DateField()
-    lname = models.CharField(max_length=45)
-    fname = models.CharField(max_length=45)
-    email = models.CharField(max_length=45)
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     image = models.ImageField(upload_to='uploads/',blank = True)
-    password = models.CharField(max_length=45)
-    friends = models.ManyToManyField('User', blank=True)
+    friends = models.ManyToManyField('Profile', blank=True)
     pets = models.ManyToManyField('Pet', blank=True)
     feedPosts = models.ManyToManyField('FeedPost', blank=True)
     mapPosts = models.ManyToManyField('MapPost', blank=True)
@@ -71,7 +66,7 @@ class User(models.Model):
         return self.lname + ", " + self.fname
 
     def get_absolute_url(self):
-        return reverse('profile', args=[str(self.id)])
+        return reverse('profile', args=[str(self.uuid)])
 
 class Pet(models.Model):
     """
@@ -87,7 +82,7 @@ class Pet(models.Model):
     image = models.ImageField(upload_to='uploads/',blank = True)
     name = models.CharField(max_length=45, blank=False)
     birthday = models.DateField('Birthday', null=True, blank=True)
-    owner = models.ForeignKey('User', on_delete=models.CASCADE, blank=False)
+    owner = models.ForeignKey('Profile', on_delete=models.CASCADE, blank=False)
 
     def __str__(self):
         return self.name
@@ -98,7 +93,7 @@ class Comment(models.Model):
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     text = models.TextField(max_length=400, help_text="What are your thoughts..")
-    user = models.ForeignKey('User',on_delete=models.CASCADE, null=True, blank=False)
+    user = models.ForeignKey('Profile',on_delete=models.CASCADE, null=True, blank=False)
     post = models.ManyToManyField('FeedPost', blank=True)
 
     def __str__(self):

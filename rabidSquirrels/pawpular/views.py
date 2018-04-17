@@ -9,7 +9,7 @@ import datetime
 
 # Create your views here.
 
-from .models import Comment, Pet, User, MapPost , ServicePost , FeedPost
+from .models import Comment, Pet, Profile, MapPost , ServicePost , FeedPost
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 
@@ -31,13 +31,13 @@ class Chat(generic.ListView):
 class Map(generic.ListView):
     model = MapPost
 
-class Profile(generic.DetailView):
-    model = User
+class profile_detail_view(generic.DetailView):
+    model = Profile
         
-    def profile(self, request, pk):
+    def profile_detail_view(self, request, pk):
 
-        user = User.objects.get(pk=pk)
-        pet_amount = user.pets.all().length()
+        user = Profile.objects.get(pk=pk)
+        pet_amount = Profile.pets.all().length()
         return render(
             request,
             'pawpular/user_detail.html',

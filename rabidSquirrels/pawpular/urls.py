@@ -12,7 +12,7 @@ urlpatterns = [
     path('chat/', views.Chat.as_view(), name='chat'),
     path('map/', views.Map.as_view(), name='map'),
     path('services/', views.Services.as_view(), name='services'),
-    path('profile/<uuid:pk>', views.Profile.as_view(), name='profile'),
+    path('profile/<uuid:pk>', views.profile_detail_view.as_view(), name='profile'),
 
 
     path('create_service/', views.ServiceCreate.as_view(), name='service_create'),
