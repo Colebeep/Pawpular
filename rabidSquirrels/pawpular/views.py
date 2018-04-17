@@ -86,18 +86,14 @@ def mappost_new(request):
 
 def feedpost_new(request):
     if request.method == 'POST':
-        form = makeMapPost(request.POST)
+        form = makeFeedPost(request.POST)
         
         if form.is_valid():
-            #clean data
             FeedPost = form.save(commit=False)
-            #MapPost.createdBy = get_user(request)
-            #need to fix the above line when ryan updates user
             FeedPost.createdOn = datetime.date.today()
             FeedPost.expiry = datetime.date.today() + datetime.timedelta(weeks=3)
-            #fix how image works maybe?
             FeedPost.save()
-            return HttpResponseRedirect(reverse('map'))
+            return HttpResponseRedirect(reverse('chat'))
     else:
         form = makeFeedPost(request.POST)
     return render(request,'pawpular/feedpost_new.html',{'form':form, })

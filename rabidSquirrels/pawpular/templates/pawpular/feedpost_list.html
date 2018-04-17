@@ -18,7 +18,10 @@
                 <div class="media-body">
 
                     <h4 class="media-heading" style="padding-top:2%;"><a href="{{post.createdBy.get_absolute_url}}"> {{post.createdBy.fname}} {{post.createdBy.lname}} </a><!--span class="badge badge-secondary">New</span--></h4>
-                    <p>{{post.text}}</p>
+                    <p>{{post.title}}</p>   
+                    <p>{{post.text}}</p>    
+                    <p>{{post.image}}</p>
+                    <p>{{post.post}}</p>                                        
                     <p style = "color:blue">{{post.createdOn}}</p>
             
                     <button type="button" class="btn btn-primary">Like</button>

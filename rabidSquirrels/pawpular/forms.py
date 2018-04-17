@@ -26,7 +26,6 @@ class makeMapPost(forms.ModelForm):
         #    'latitude': GoogleStaticMapWidget,
         #}
 
-
 class makeFeedPost(forms.ModelForm):
     """
     here we should process a text field which will ideally write to the comment field of the feed post.
