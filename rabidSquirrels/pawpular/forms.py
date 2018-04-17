@@ -2,11 +2,8 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 import datetime
-<<<<<<< HEAD
-from .models import MapPost, FeedPost
-=======
-from .models import MapPost, ServicePost
->>>>>>> 37186dc68924b953e9127791d9ac64b0265d1fc9
+
+from .models import MapPost, FeedPost , ServicePost
 
 class makeServicePost(forms.ModelForm):
     """
