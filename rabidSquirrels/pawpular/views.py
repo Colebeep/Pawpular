@@ -23,7 +23,7 @@ def index(request):
     )
 
 
-class Chat(generic.ListView):
+class Chat(LoginRequiredMixin, generic.ListView):
     model = FeedPost
     # fields = ['text']
     # template_name_suffix = '_list'
@@ -33,10 +33,10 @@ class Chat(generic.ListView):
             'pawpular/feedpost_list.html'
         )
 
-class Map(generic.ListView):
+class Map(LoginRequiredMixin, generic.ListView):
     model = MapPost
 
-class profile_detail_view(generic.DetailView):
+class profile_detail_view(LoginRequiredMixin, generic.DetailView):
     model = Profile
         
     def profile_detail_view(self, request, pk):
@@ -48,9 +48,10 @@ class profile_detail_view(generic.DetailView):
             'pawpular/user_detail.html',
             context={'user':user, 'pet_amount': pet_amount}
         )
-class Services(generic.ListView):
+class Services(LoginRequiredMixin, generic.ListView):
     model = ServicePost
 
+@login_required
 def settings(request):
     return render(
         request,
