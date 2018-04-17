@@ -2,7 +2,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 import datetime
-from .models import MapPost
+from .models import MapPost, FeedPost
 
 class makeServicePost(forms.Form):
     """
@@ -26,9 +26,11 @@ class makeMapPost(forms.ModelForm):
         #    'latitude': GoogleStaticMapWidget,
         #}
 
-
-class makeFeedPost(forms.Form):
+class makeFeedPost(forms.ModelForm):
     """
     here we should process a text field which will ideally write to the comment field of the feed post.
     things like the user and time or date can be provided by the views
     """
+    class Meta:
+        model = FeedPost
+        fields = ('title','post','image','createdBy')

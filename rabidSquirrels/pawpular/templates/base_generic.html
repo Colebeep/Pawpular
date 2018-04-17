@@ -49,7 +49,7 @@
                     <ul class="navbar-nav mrl-auto">
                       <li class="navbar-text">User: {{ user.get_username }}</li>
                         <li class ="navbar-nav">
-                          <a class="nav-link" href="{% url 'logout'%}?next={{request.path}}">Logout</a>
+                          <a class="nav-link" href="{% url 'logout' %}?next={{request.path}}">Logout</a>
                         </li>
                     {% else %}
                       <li class="navbar-nav">

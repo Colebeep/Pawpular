@@ -1,10 +1,9 @@
 {% extends "base_generic.html" %}
     {% block content %}
 
-
-
-
-
+    <div class="card">
+        <div><a  class="button" href="{%url 'feedpost_new' %}">Create a new Feed Post</a></div>
+    </div>
 
     <!-- this is where the feed posts will be amalgomated and rendered. -->
     <div class="container" style = "padding-left: 15%;padding-right:15%;padding-top:3%;padding-bottom:10%;">
@@ -19,7 +18,10 @@
                 <div class="media-body">
 
                     <h4 class="media-heading" style="padding-top:2%;"><a href="{{post.createdBy.get_absolute_url}}"> {{post.createdBy.fname}} {{post.createdBy.lname}} </a><!--span class="badge badge-secondary">New</span--></h4>
-                    <p>{{post.text}}</p>
+                    <p>{{post.title}}</p>   
+                    <p>{{post.text}}</p>    
+                    <p>{{post.image}}</p>
+                    <p>{{post.post}}</p>                                        
                     <p style = "color:blue">{{post.createdOn}}</p>
             
                     <button type="button" class="btn btn-primary">Like</button>

@@ -30,7 +30,8 @@ class FeedPost(Post):
     """
      -We should also include an optional image field in future
     """
-    comments = models.ManyToManyField('Comment', blank=True)
+    post = models.CharField(max_length=1000, default='')
+    imageURL = models.CharField(max_length=1000, default='')
     
 class ServicePost(Post):
     cost = models.IntegerField(blank=True)
