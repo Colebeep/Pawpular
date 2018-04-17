@@ -23,7 +23,9 @@
     </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav mr-auto">
-                    <li {% if request.resolver_match.url_name == 'index' %} class="active" {% endif %}>
+                    
+            {% if user.is_authenticated %}
+                <li {% if request.resolver_match.url_name == 'index' %} class="active" {% endif %}>
                         <a class="nav-link" href="{% url 'index' %}">Home</a>
                     </li>
                     <li {% if request.resolver_match.url_name == 'map' %} class="active" {% endif %}>
@@ -35,7 +37,7 @@
                     <li {% if request.resolver_match.url_name == 'services' %} class="active" {% endif %}>
                         <a class="nav-link" href="{% url 'services' %}">Services</a>
                     </li>
-                    {% if user.is_authenticated %}
+                    
                     <li {% if request.resolver_match.url_name == 'profile' %} class="active" {% endif %}>
                         <a class="nav-link" href={{user.profile.get_absolute_url}} >Profile</a>
                     </li>
