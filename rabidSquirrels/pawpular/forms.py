@@ -12,7 +12,7 @@ class makeServicePost(forms.ModelForm):
     """
     class Meta:
         model = ServicePost
-        fields = ('cost','title','text','createdBy')
+        fields = ('cost','title','text')
 
 #from mapwidgets.widgets import GoogleStaticMapWidget
 
@@ -22,7 +22,7 @@ class makeMapPost(forms.ModelForm):
     """
     class Meta:
         model = MapPost
-        fields = ('title','text','image','latitude','longitude','createdBy',)
+        fields = ('title','text','image','latitude','longitude')
         #need to change createdBy when ryan updates user
         #the other commented out stuff is just stuff i'm trying
         #widgets = {
@@ -37,4 +37,4 @@ class makeFeedPost(forms.ModelForm):
     """
     class Meta:
         model = FeedPost
-        fields = ('title','post','image','createdBy')
+        fields = ('title','post','image')
