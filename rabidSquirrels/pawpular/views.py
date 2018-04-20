@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
+from django.http import HttpResponseForbidden
 from django.urls import reverse
 import datetime
 from django import template
@@ -120,3 +121,23 @@ def create_new_service(request):
     else:
        form=makeServicePost() 
     return render(request,'pawpular/servicepost_form.html',{'form':form, })
+
+@register.inclusion_tag("pawpular/feedpost_edit.html", takes_context=True)
+def feedpost_edit(request, id):
+    if id:
+        feedpost = get_object_or_404(FeedPost, pk=id)
+    
+        if feedpost.createdBy != request.user.profile:
+            print('createdBy mismatch')
+            return HttpResponseForbidden()
+    else:
+        feedpost = FeedPost(createdBy=request.user.profile)
+
+    form = makeFeedPost(request.POST or None, instance=feedpost)
+    if request.POST and form.is_valid():
+        form.save()
+
+        # Save was successful, so redirect to another page
+        return HttpResponseRedirect(reverse('chat'))
+
+    return render(request, 'pawpular/feedpost_edit.html', {'form':form, })

@@ -23,7 +23,7 @@
                     <img src="http://127.0.0.1:8000/pawpular/uploads/{{post.image}}" class="media-object rounded" style="width:70px">
                     <p>{{post.post}}</p>                                        
                     <p style = "color:blue">{{post.createdOn}}</p>
-            
+                    <button type="button" class="btn red" href="{%url 'feedpost_edit' post.id%}">Edit</button>
                     <button type="button" class="btn btn-primary">Like</button>
                     <!--button type="button" class="btn btn-secondary">Hate</button-->
                     <button type="button" class="btn btn-success">Comment</button>

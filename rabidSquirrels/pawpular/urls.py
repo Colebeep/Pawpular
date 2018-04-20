@@ -20,7 +20,8 @@ urlpatterns = [
     #these pageds do not it should tho. every user has their own security settings.
     path('settings/', views.settings, name='settings'),
     path(r'map/mappost/new/<lat>/<lon>',views.mappost_new, name='mappost_new'),
-    path('chat/feedpost/new',views.feedpost_new, name='feedpost_new')
+    path('chat/feedpost/new',views.feedpost_new, name='feedpost_new'),
+    path(r'chat/feedpost/edit/<id>', views.feedpost_edit, name='feedpost_edit')
 
 ] + static('uploads/', document_root=settings.MEDIA_ROOT)
 
