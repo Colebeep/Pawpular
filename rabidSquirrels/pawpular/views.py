@@ -74,8 +74,7 @@ def mappost_new(request):
         if form.is_valid():
             #clean data
             MapPost = form.save(commit=False)
-            #MapPost.createdBy = get_user(request)
-            #need to fix the above line when ryan updates user
+            MapPost.createdBy = request.user.profile
             MapPost.createdOn = datetime.date.today()
             MapPost.expiry = datetime.date.today() + datetime.timedelta(weeks=3)
             #fix how image works maybe?
@@ -92,6 +91,7 @@ def feedpost_new(request):
         
         if form.is_valid():
             FeedPost = form.save(commit=False)
+            FeedPost.createdBy = request.user.profile
             FeedPost.createdOn = datetime.date.today()
             FeedPost.expiry = datetime.date.today() + datetime.timedelta(weeks=3)
             FeedPost.save()
@@ -107,7 +107,7 @@ def create_new_service(request):
         if(form.is_valid()):
             service = form.save(commit = False)
             service.createdOn = datetime.date.today()
-            # service.createdBy = get_user(request)
+            service.createdBy = request.user.profile
             service.startDate = datetime.date.today()
             service.endDate = datetime.date.today() + datetime.timedelta(weeks=3)
 
