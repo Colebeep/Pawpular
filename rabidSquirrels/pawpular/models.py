@@ -10,7 +10,7 @@ class Post(models.Model):
     createdBy = models.ForeignKey('Profile', on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     text = models.CharField(max_length=150)
-    image = models.ImageField(upload_to='uploads/',blank = True)
+    image = models.ImageField(upload_to='uploads/', max_length=100)
     createdOn = models.DateField()
     title = models.CharField(max_length=50, default='')
 
@@ -21,17 +21,12 @@ class Post(models.Model):
         abstract = True
 
 class MapPost(Post):
-    imageUrl = models.CharField(max_length=1000, default='')
     latitude = models.CharField(max_length=45, default='')
     longitude = models.CharField(max_length=45, default='')
     expiry = models.DateField()
     
 class FeedPost(Post):
-    """
-     -We should also include an optional image field in future
-    """
     post = models.CharField(max_length=1000, default='')
-    imageURL = models.CharField(max_length=1000, default='')
     
 class ServicePost(Post):
     cost = models.IntegerField(blank=True)

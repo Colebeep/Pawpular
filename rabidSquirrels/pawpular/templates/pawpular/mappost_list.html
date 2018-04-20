@@ -2,7 +2,6 @@
 
 {% block content %}
     <div class="card">
-        <div><a  class="button" href="{%url 'mappost_new' %}">Create a new Map Post</a></div>
         <div id="map" style="width:100%;height:90%;margin-top:1%;margin-bottom:1%"></div>
     </div>
     
@@ -36,7 +35,7 @@
             addInfoWindow(marker1,
             
             
-                        "<img src=\"http://127.0.0.1:8000/pawpular/{{post.image}}\" width = 450px alt='1'>\
+                        "<img src=\"http://127.0.0.1:8000/pawpular/uploads/{{post.image}}\" width = 450px alt='1'>\
                         <h3>{{post.title}} - <a style=\"color:purple;\">{{post.createdBy.fname}} {{post.createdBy.lname}}</a></h3>\
                         <p>{{post.text}}</p>"
                                 
@@ -64,12 +63,13 @@
             
         function placeMarker(location) {
             if(confirm("Confirm Marker?")) {
-                window.location = "{%url 'mappost_new' %}";
                 var marker = new google.maps.Marker({
                     position: location,
                     map: map,
                     icon:icon
                 });
+                
+                window.location = "http://localhost:8000/pawpular/map/mappost/new/" + marker.getPosition().lat() + '/' + marker.getPosition().lng()
             }
         }
     </script>

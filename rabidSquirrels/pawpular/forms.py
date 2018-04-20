@@ -22,7 +22,7 @@ class makeMapPost(forms.ModelForm):
     """
     class Meta:
         model = MapPost
-        fields = ('title','text','image','latitude','longitude')
+        fields = ('title','text','image')
         #need to change createdBy when ryan updates user
         #the other commented out stuff is just stuff i'm trying
         #widgets = {

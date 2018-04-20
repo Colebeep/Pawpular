@@ -6,12 +6,15 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import datetime
+from django import template
 
 # Create your views here.
 
 from .models import Comment, Pet, Profile, MapPost , ServicePost , FeedPost
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
+
+register = template.Library()
 
 @login_required
 def index(request):
@@ -67,28 +70,29 @@ class ServiceCreate(CreateView):
 from .forms import makeMapPost , makeFeedPost , makeServicePost
 from django.contrib.auth import get_user
 
-def mappost_new(request):
+@register.inclusion_tag("pawpular/mappost_list.html", takes_context=True)
+def mappost_new(request, lat, lon):
     if request.method == 'POST':
-        form = makeMapPost(request.POST)
-        
+        form = makeMapPost(request.POST, request.FILES)
         if form.is_valid():
             #clean data
             MapPost = form.save(commit=False)
             MapPost.createdBy = request.user.profile
             MapPost.createdOn = datetime.date.today()
             MapPost.expiry = datetime.date.today() + datetime.timedelta(weeks=3)
-            #fix how image works maybe?
+            MapPost.latitude = lat
+            MapPost.longitude = lon
             MapPost.save()
             return HttpResponseRedirect(reverse('map'))
     else:
         form = makeMapPost()
-    return render(request,'pawpular/mappost_edit.html',{'form':form, })
+    return render(request,'pawpular/mappost_edit.html',{'form':form})
 
 
 def feedpost_new(request):
     if request.method == 'POST':
-        form = makeFeedPost(request.POST)
-        
+        form = makeFeedPost(request.POST, request.FILES)
+
         if form.is_valid():
             FeedPost = form.save(commit=False)
             FeedPost.createdBy = request.user.profile
@@ -109,7 +113,7 @@ def create_new_service(request):
             service.createdOn = datetime.date.today()
             service.createdBy = request.user.profile
             service.startDate = datetime.date.today()
-            service.endDate = datetime.date.today() + datetime.timedelta(weeks=3)
+            service.endDateg = datetime.date.today() + datetime.timedelta(weeks=3)
 
             service.save()
             return HttpResponseRedirect(reverse('services'))
