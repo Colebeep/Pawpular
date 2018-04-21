@@ -10,9 +10,37 @@ class makeServicePost(forms.ModelForm):
     requires cost, duration, name, service type.
     i think the post should have a life time of three weeks.
     """
+    def clean_startDate(self):
+        data = self.cleaned_data['startDate']
+        #Check date is not in past.
+        if data < datetime.date.today():
+            raise ValidationError(_('Invalid date - date in the past'))
+        # Remember to always return the cleaned data.
+        return data
+
+
+
+    def clean_endDate(self):
+        data = self.cleaned_data['endDate']
+        # data2 = self.cleaned_data['startDate']
+
+        #Check date is not in past.
+        if data < datetime.date.today():
+            raise ValidationError(_('Invalid date - its in the past'))
+
+        #Check date is in range librarian allowed to change (+4 weeks)
+        if data > datetime.date.today() + datetime.timedelta(weeks=3):
+            raise ValidationError(_('Invalid date - your service lasts longer than 4 weeks'))
+
+        # Remember to always return the cleaned data.
+        return data
+
     class Meta:
         model = ServicePost
-        fields = ('cost','title','text')
+        fields = ['cost','title','text','startDate','endDate']
+        labels = { 'endDate': _('Ending Date'),'startDate':_('Starting Date') }
+        help_texts = { 'endDate': _('Enter a date between now and 4 weeks (default 3).'), }
+        
 
 #from mapwidgets.widgets import GoogleStaticMapWidget
 
@@ -23,12 +51,6 @@ class makeMapPost(forms.ModelForm):
     class Meta:
         model = MapPost
         fields = ('title','text','image')
-        #need to change createdBy when ryan updates user
-        #the other commented out stuff is just stuff i'm trying
-        #widgets = {
-        #    'longitude': GoogleStaticMapWidget,
-        #    'latitude': GoogleStaticMapWidget,
-        #}
 
 class makeFeedPost(forms.ModelForm):
     """

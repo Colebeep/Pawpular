@@ -113,13 +113,16 @@ def create_new_service(request):
             service = form.save(commit = False)
             service.createdOn = datetime.date.today()
             service.createdBy = request.user.profile
-            service.startDate = datetime.date.today()
-            service.endDateg = datetime.date.today() + datetime.timedelta(weeks=3)
+        
+            service.startDate = form.cleaned_data['startDate']
+            service.endDate = form.cleaned_data['endDate']
 
             service.save()
             return HttpResponseRedirect(reverse('services'))
     else:
-       form=makeServicePost() 
+        proposed_end_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        form = makeServicePost(initial={'startDate': datetime.date.today(),'endDate': proposed_end_date,})
+        # form=makeServicePost() 
     return render(request,'pawpular/servicepost_form.html',{'form':form, })
 
 @register.inclusion_tag("pawpular/feedpost_edit.html", takes_context=True)

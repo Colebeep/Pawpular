@@ -4,12 +4,9 @@ from django.contrib.auth.models import User
 import uuid
 
 class Post(models.Model):
-    """
-    abstract representing a any post
-    """
     createdBy = models.ForeignKey('Profile', on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    text = models.CharField(max_length=150)
+    text = models.TextField(max_length=150)
     image = models.ImageField(upload_to='uploads/', max_length=100)
     createdOn = models.DateField()
     title = models.CharField(max_length=50, default='')
@@ -35,9 +32,7 @@ class ServicePost(Post):
 
 
 class Profile(models.Model):
-    """
-    Model representing a user.
-    """
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4)
     image = models.ImageField(upload_to='uploads/',blank = True)
@@ -45,11 +40,6 @@ class Profile(models.Model):
     feedPosts = models.ManyToManyField('FeedPost', blank=True)
     mapPosts = models.ManyToManyField('MapPost', blank=True)
     servicePosts = models.ManyToManyField('ServicePost', blank=True)
-    #we need more of these sort of things for the settings page
-
-
-#this is for the user pointer to the user created in the database. here will store the particulars
-# user = models.OneToOneField(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     status=(
         ('1','on'),
@@ -65,15 +55,6 @@ class Profile(models.Model):
         return "/pawpular/profile/" + self.uuid.__str__()
 
 class Pet(models.Model):
-    """
-    Model representing a pet.
-        -the pet type should be a required field
-        -dog
-        -cat
-        -rabbit
-        -... you get the idea
-
-    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     image = models.ImageField(upload_to='uploads/',blank = True)
     name = models.CharField(max_length=45, blank=False)
@@ -84,16 +65,10 @@ class Pet(models.Model):
         return self.name
 
 class Comment(models.Model):
-    """
-    Model representing a comment
-    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     text = models.TextField(max_length=400, help_text="What are your thoughts..")
     user = models.ForeignKey('Profile',on_delete=models.CASCADE, null=True, blank=False)
     post = models.ManyToManyField('FeedPost', blank=True)
 
     def __str__(self):
-        """
-        String for representing the Model object (in Admin site etc.)
-        """
         return self.id.__str__()
