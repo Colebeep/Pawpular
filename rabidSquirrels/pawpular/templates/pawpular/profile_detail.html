@@ -9,8 +9,10 @@
                 
                     <img src="http://127.0.0.1:8000/pawpular/uploads/{{user.profile.image}}" class="rounded" height = "350px" width="300px">
                     <div class="card-body">
-                    <h2 class="card-title">{{user.fname}} {{user.lname}}</h2>
+                    <h2 class="card-title">{{user.first_name}} {{user.last_name}}</h2>
                     <h3>{{user.email}}</h3>
+                    <h3>{{user.profile.mapPosts.all}}</h3>
+                    <h3>{{pet_amount}}</h3>
                     </div>
 
             </div>
@@ -32,14 +34,15 @@
             
             <div>
                 <h2>Pets</h2>
-                {% for pet in user.pets.all %}
-                <h5>
-                    <p><!-- comment out a tag for for loop<a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo1">{{user.fname}}'s pet--> {{pet.name}}</p>
+                {% for pet in user.profile.pets.all %}
+                <!-- <h5>
+                    <p>{{pet.name}}</p>
                         <div id="demo1" class="collapse">
                             <img src="https://assets.atlasobscura.com/article_images/52211/image.jpg" width="400px">
                             <p>{{pet.birthday}}</p>
                         </div>
-                </h5>
+                </h5> -->
+                <p>{{pet.name}}</p>
                 {% endfor %}
             </div>
             

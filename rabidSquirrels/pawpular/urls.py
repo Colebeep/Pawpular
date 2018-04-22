@@ -23,6 +23,6 @@ urlpatterns = [
     path('chat/feedpost/new',views.feedpost_new, name='feedpost_new'),
     path(r'chat/feedpost/edit/<id>', views.feedpost_edit, name='feedpost_edit')
 
-] + static('uploads/', document_root=settings.MEDIA_ROOT)
+    # path('profile/new_pet' views.new_pet, name = "pet_create")
 
-    
+] + static('uploads/', document_root=settings.MEDIA_ROOT)

@@ -68,7 +68,7 @@ class ServiceCreate(CreateView):
     fields = ['text','title','cost','startDate','endDate']
 
 
-from .forms import makeMapPost , makeFeedPost , makeServicePost
+from .forms import makeMapPost , makeFeedPost , makeServicePost, makePet
 from django.contrib.auth import get_user
 
 @register.inclusion_tag("pawpular/mappost_list.html", takes_context=True)
@@ -144,3 +144,16 @@ def feedpost_edit(request, id):
         return HttpResponseRedirect(reverse('chat'))
 
     return render(request, 'pawpular/feedpost_edit.html', {'form':form, })
+
+
+# def pet_new(request):
+#     if request.method == 'POST':
+#         form = makePet(request.POST)
+
+#         if(form.isValid()):
+#             pet = form.save(commit =False)
+#             pet.owner = request.user.profile
+#             pet.save()
+#             return HttpResponseRedirect(reverse('profile'))
+
+#     return render(request,'pawpular/new_pet.html',{'form':form, })

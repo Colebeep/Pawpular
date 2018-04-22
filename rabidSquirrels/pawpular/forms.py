@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 import datetime
 
-from .models import MapPost, FeedPost , ServicePost
+from .models import MapPost, FeedPost , ServicePost, Pet
 
 class makeServicePost(forms.ModelForm):
     """
@@ -17,8 +17,6 @@ class makeServicePost(forms.ModelForm):
             raise ValidationError(_('Invalid date - date in the past'))
         # Remember to always return the cleaned data.
         return data
-
-
 
     def clean_endDate(self):
         data = self.cleaned_data['endDate']
@@ -60,3 +58,10 @@ class makeFeedPost(forms.ModelForm):
     class Meta:
         model = FeedPost
         fields = ('title','post','image')
+
+
+class makePet(forms.ModelForm):
+
+    class Meta:
+        model = Pet
+        fields = ['name','birthday','image',]
