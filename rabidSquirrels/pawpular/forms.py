@@ -26,7 +26,6 @@ class makeServicePost(forms.ModelForm):
         if data < datetime.date.today():
             raise ValidationError(_('Invalid date - its in the past'))
 
-        #Check date is in range librarian allowed to change (+4 weeks)
         if data > datetime.date.today() + datetime.timedelta(weeks=4):
             raise ValidationError(_('Invalid date - your service lasts longer than 4 weeks'))
 
@@ -58,6 +57,7 @@ class makeFeedPost(forms.ModelForm):
     class Meta:
         model = FeedPost
         fields = ('title','post','image')
+        labels = { 'title': _('Post Title'),'post':_('Post Text') }
 
 
 class makePet(forms.ModelForm):
@@ -65,3 +65,4 @@ class makePet(forms.ModelForm):
     class Meta:
         model = Pet
         fields = ['name','birthday','image',]
+        labels = { 'name': _('What\'s your Pet\'s name?'),'birthday':_('What\'s your Pet\'s Birthday?'),'image':_('The World must see your pet!') }

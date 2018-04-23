@@ -7,7 +7,7 @@ class Post(models.Model):
     createdBy = models.ForeignKey('Profile', on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     text = models.TextField(max_length=150)
-    image = models.ImageField(upload_to='uploads/', max_length=100)
+    image = models.ImageField(upload_to='uploads/', blank=True,max_length=100)
     createdOn = models.DateField()
     title = models.CharField(max_length=50, default='')
 
@@ -57,7 +57,7 @@ class Profile(models.Model):
 class Pet(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     image = models.ImageField(upload_to='uploads/',blank = True)
-    name = models.CharField(max_length=45, blank=False)
+    name = models.CharField(max_length=45)
     birthday = models.DateField('Birthday', null=True, blank=True)
     owner = models.ForeignKey('Profile', on_delete=models.CASCADE, blank=False)
 
