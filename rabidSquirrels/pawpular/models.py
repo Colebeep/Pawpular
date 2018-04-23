@@ -23,7 +23,7 @@ class MapPost(Post):
     expiry = models.DateField(default='')
     
 class FeedPost(Post):
-    post = models.CharField(max_length=1000, default='')
+    post = models.TextField(max_length=1000, default='')
     
 class ServicePost(Post):
     cost = models.IntegerField(blank=True)

@@ -1,12 +1,18 @@
 {% extends "base_generic.html" %}
     {% block content %}
-
-    <div class="card">
-        <div><a  class="button" href="{%url 'feedpost_new' %}">Create a new Feed Post</a></div>
+    <div class="container">
+            <h1 style="padding-top:2.5%;">Your Feed</h1>
+            <div><a  class="button" href="{%url 'feedpost_new' %}">Create a new Feed Post</a></div>
+            <br>
+            <hr>
     </div>
 
+
     <!-- this is where the feed posts will be amalgomated and rendered. -->
-    <div class="container" style = "padding-left: 15%;padding-right:15%;padding-top:3%;padding-bottom:10%;">
+    <div class="container" style = "padding-right:10%;padding-top:3%;padding-bottom:10%;">
+
+
+
         <!-- this for loop loops through everything in the feedpost list and puts the text field into the template below -->
         {% for post in feedpost_list %}
         <!-- Left-aligned media object -->
@@ -36,11 +42,7 @@
                         </div>
                     </div>
                     {% endifequal %}
-                    
-                    
-                    <button type="button" class="btn btn-primary btn-sm">Like</button>
-                    <!--button type="button" class="btn btn-secondary">Hate</button-->
-                    <button type="button" class="btn btn-success btn-sm">Comment</button>
+
             
                 </div>
             </div>

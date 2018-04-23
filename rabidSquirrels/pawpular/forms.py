@@ -27,7 +27,7 @@ class makeServicePost(forms.ModelForm):
             raise ValidationError(_('Invalid date - its in the past'))
 
         #Check date is in range librarian allowed to change (+4 weeks)
-        if data > datetime.date.today() + datetime.timedelta(weeks=3):
+        if data > datetime.date.today() + datetime.timedelta(weeks=4):
             raise ValidationError(_('Invalid date - your service lasts longer than 4 weeks'))
 
         # Remember to always return the cleaned data.
