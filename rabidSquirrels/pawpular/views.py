@@ -106,26 +106,6 @@ def feedpost_new(request):
     else:
         form = makeFeedPost(request.POST)
     return render(request,'pawpular/feedpost_new.html',{'form':form, })
-        
-def create_new_service(request):
-    if request.method == 'POST':
-        form = makeServicePost(request.POST)
-
-        if(form.is_valid()):
-            service = form.save(commit = False)
-            service.createdOn = datetime.date.today()
-            service.createdBy = request.user.profile
-        
-            service.startDate = form.cleaned_data['startDate']
-            service.endDate = form.cleaned_data['endDate']
-
-            service.save()
-            return HttpResponseRedirect(reverse('services'))
-    else:
-        proposed_end_date = datetime.date.today() + datetime.timedelta(weeks=3)
-        form = makeServicePost(initial={'startDate': datetime.date.today(),'endDate': proposed_end_date,})
-        # form=makeServicePost() 
-    return render(request,'pawpular/servicepost_form.html',{'form':form, })
 
 @register.inclusion_tag("pawpular/feedpost_edit.html", takes_context=True)
 def feedpost_edit(request, id):
@@ -146,6 +126,61 @@ def feedpost_edit(request, id):
         return HttpResponseRedirect(reverse('chat'))
 
     return render(request, 'pawpular/feedpost_edit.html', {'form':form, })
+
+
+
+
+
+
+"""
+thus defines the service forms
+"""
+# this is to create new services
+def create_new_service(request):
+    if request.method == 'POST':
+        form = makeServicePost(request.POST)
+
+        if(form.is_valid()):
+            service = form.save(commit = False)
+            service.createdOn = datetime.date.today()
+            service.createdBy = request.user.profile
+        
+            service.startDate = form.cleaned_data['startDate']
+            service.endDate = form.cleaned_data['endDate']
+
+            service.save()
+            return HttpResponseRedirect(reverse('services'))
+    else:
+        proposed_end_date = datetime.date.today() + datetime.timedelta(weeks=3)
+        form = makeServicePost(initial={'startDate': datetime.date.today(),'endDate': proposed_end_date,})
+        # form=makeServicePost() 
+    return render(request,'pawpular/servicepost_form.html',{'form':form, })
+
+# this is to edit existing services
+# def edit_service(request,id):
+#     if id:
+#         servicepost = get_object_or_404(ServicePost, pk=id)
+#         if servicepost.createdBy!=request.user.profile:
+#             return HttpResponseForbidden()
+#     else:
+#         servicepost = ServicePost(createdBy=request.user.profile)
+    
+#     if request.POST:
+#         form=makeServicePost(request.POST,instance=servicepost)
+#         if form.is_valid():
+#             form.save()
+
+#             return HttpResponseRedirect(reverse('services'))
+
+#     rreturn render(request,'pawpular/servicepost_form.html',{'form':form, })
+    
+
+
+
+
+
+
+
 
 @login_required
 def pet_new(request):
