@@ -20,7 +20,7 @@ class Post(models.Model):
 class MapPost(Post):
     latitude = models.CharField(max_length=45, default='')
     longitude = models.CharField(max_length=45, default='')
-    expiry = models.DateField()
+    expiry = models.DateField(default='')
     
 class FeedPost(Post):
     post = models.CharField(max_length=1000, default='')
