@@ -84,6 +84,7 @@ def mappost_new(request, lat, lon):
             MapPost.latitude = lat
             MapPost.longitude = lon
             MapPost.save()
+            request.user.profile.mapPosts.add(MapPost)
             return HttpResponseRedirect(reverse('map'))
     else:
         form = makeMapPost()
@@ -100,6 +101,7 @@ def feedpost_new(request):
             FeedPost.createdOn = datetime.date.today()
             FeedPost.expiry = datetime.date.today() + datetime.timedelta(weeks=3)
             FeedPost.save()
+            request.user.profile.feedPosts.add(FeedPost)
             return HttpResponseRedirect(reverse('chat'))
     else:
         form = makeFeedPost(request.POST)
@@ -118,6 +120,7 @@ def create_new_service(request):
             service.endDate = form.cleaned_data['endDate']
 
             service.save()
+            request.user.profile.servicePosts.add(service)
             return HttpResponseRedirect(reverse('services'))
     else:
         proposed_end_date = datetime.date.today() + datetime.timedelta(weeks=3)
