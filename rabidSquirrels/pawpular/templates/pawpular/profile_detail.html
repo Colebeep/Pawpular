@@ -9,8 +9,10 @@
                 
                     <img src="http://127.0.0.1:8000/pawpular/uploads/{{user.profile.image}}" class="rounded" height = "350px" width="300px">
                     <div class="card-body">
-                    <h2 class="card-title">{{user.fname}} {{user.lname}}</h2>
+                    <h2 class="card-title">{{user.first_name}} {{user.last_name}}</h2>
                     <h3>{{user.email}}</h3>
+                    <h3>{{user.profile.mapPosts.all}}</h3>
+                    <h3>{{pet_amount}}</h3>
                     </div>
 
             </div>
@@ -39,7 +41,8 @@
                             <img src="http://127.0.0.1:8000/pawpular/uploads/{{pet.image}}" width="400px">
                             <p>Birthday on {{pet.birthday}}</p>
                         </div>
-                </h5>
+                </h5> -->
+                <p>{{pet.name}}</p>
                 {% endfor %}
             </div>
             

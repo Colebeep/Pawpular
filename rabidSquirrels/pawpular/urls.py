@@ -23,4 +23,9 @@ urlpatterns = [
     path('chat/feedpost/new',views.feedpost_new, name='feedpost_new'),
     path(r'chat/feedpost/edit/<id>', views.feedpost_edit, name='feedpost_edit')
 
+<<<<<<< HEAD
+=======
+    # path('profile/new_pet' views.new_pet, name = "pet_create")
+
+>>>>>>> 58f909dd9b189c35c33d1d0b9c76c9fc5bdde636
 ] + static('uploads/', document_root=settings.MEDIA_ROOT)
