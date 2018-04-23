@@ -145,15 +145,19 @@ def feedpost_edit(request, id):
 
     return render(request, 'pawpular/feedpost_edit.html', {'form':form, })
 
+@login_required
+def pet_new(request):
+    if request.method == 'POST':
+        form = makePet(request.POST)
 
-# def pet_new(request):
-#     if request.method == 'POST':
-#         form = makePet(request.POST)
+        if form.is_valid():
+            pet = form.save(commit =False)
+            pet.owner = request.user.profile
+            pet.save()
+            request.user.profile.pets.add(pet)
+            #need to fix redirecting to profile
+            return HttpResponseRedirect(reverse('chat'))
+    else:
+        form = makePet(request.POST)
 
-#         if(form.isValid()):
-#             pet = form.save(commit =False)
-#             pet.owner = request.user.profile
-#             pet.save()
-#             return HttpResponseRedirect(reverse('profile'))
-
-#     return render(request,'pawpular/new_pet.html',{'form':form, })
+    return render(request,'pawpular/new_pet.html',{'form':form,})

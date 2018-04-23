@@ -1,7 +1,7 @@
 {% extends "base_generic.html" %}
     {% block content %}
         <div style="padding-left:30%;padding-right:30%;padding-top:2.5%;padding-bottom:5%;">
-            <header style="padding-bottom:2.5%;">
+            <header style="padding-bottom:1.5%;">
                 <h1>Profile page</h1>
             </header>
 
@@ -29,18 +29,19 @@
                 also can someone figure out how to make the pets and comments centered without centering the text?
             
             -->
-            
-            <div>
-                <h2>Pets</h2>
+            <h2>Pets</h2>
+            <div style="padding-left:2.5%">
+                
                 {% for pet in user.profile.pets.all %}
                 <h5>
-                    <p data-toggle="collapse" data-target="#demo" style  = "color:purple">{{pet.name}}</p>
-                        <div id="demo" class="collapse">
+                    <p data-toggle="collapse" data-target="#demo{{pet.id}}" style  = "color:purple;cursor: pointer;">{{pet.name}}</p>
+                        <div id="demo{{pet.id}}" class="collapse">
                             <img src="http://127.0.0.1:8000/pawpular/uploads/{{pet.image}}" width="400px">
-                            <p>Birthday on {{pet.birthday}}</p>
+                            <p>Birthday on <font color="blue">{{pet.birthday}}</font></p>
                         </div>
                 </h5>
                 {% endfor %}
+                <p><a href="{% url 'pet_create' %}">Register a new pet!</a></p>
             </div>
             
 
@@ -58,7 +59,7 @@
 
             <div >
                 <h2>Posts</h2>
-                {% for post in user.feedPosts.all %}
+                {% for post in user.profile.feedPosts.all %}
                 <div style="padding:2%;">
                     <div class="card" >
                         <div class="container">
