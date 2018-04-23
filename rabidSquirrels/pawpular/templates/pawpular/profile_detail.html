@@ -32,12 +32,12 @@
             
             <div>
                 <h2>Pets</h2>
-                {% for pet in user.pets.all %}
+                {% for pet in user.profile.pets.all %}
                 <h5>
-                    <p><!-- comment out a tag for for loop<a href="#" onclick="return false;" data-toggle="collapse" data-target="#demo1">{{user.fname}}'s pet--> {{pet.name}}</p>
-                        <div id="demo1" class="collapse">
-                            <img src="https://assets.atlasobscura.com/article_images/52211/image.jpg" width="400px">
-                            <p>{{pet.birthday}}</p>
+                    <p>{{pet.name}}</p>
+                        <div>
+                            <img src="http://127.0.0.1:8000/pawpular/uploads/{{pet.image}}" width="400px">
+                            <p>Birthday on {{pet.birthday}}</p>
                         </div>
                 </h5>
                 {% endfor %}

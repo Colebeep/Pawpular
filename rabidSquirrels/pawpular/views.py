@@ -133,7 +133,7 @@ def feedpost_edit(request, id):
     else:
         feedpost = FeedPost(createdBy=request.user.profile)
 
-    form = makeFeedPost(request.POST or None, instance=feedpost)
+    form = makeFeedPost(request.POST, request.FILES, instance=feedpost)
     if request.POST and form.is_valid():
         form.save()
 

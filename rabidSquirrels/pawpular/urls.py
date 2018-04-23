@@ -24,5 +24,3 @@ urlpatterns = [
     path(r'chat/feedpost/edit/<id>', views.feedpost_edit, name='feedpost_edit')
 
 ] + static('uploads/', document_root=settings.MEDIA_ROOT)
-
-    
