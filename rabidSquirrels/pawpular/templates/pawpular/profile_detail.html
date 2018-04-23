@@ -18,28 +18,18 @@
             <hr>
             <br>
 
-            <!--
-                will need a for loop for this one
-                if i were to imagine how this would go.../
-                    the for loop would access all of ryan's pets (the one to many relationship)
-                    and place them into the following paragraphs
-                    then access specific data from the pet objects pointed to by the pet reference
-                    also we should configure the models to accept many images of these animals so we can do carousel type image galeries
-
-                also can someone figure out how to make the pets and comments centered without centering the text?
-            
-            -->
             <h2>Pets</h2>
             <div style="padding-left:2.5%">
                 
                 {% for pet in user.profile.pets.all %}
-                <h5>
-                    <p data-toggle="collapse" data-target="#demo{{pet.id}}" style  = "color:purple;cursor: pointer;">{{pet.name}}</p>
-                        <div id="demo{{pet.id}}" class="collapse">
-                            <img src="http://127.0.0.1:8000/pawpular/uploads/{{pet.image}}" width="400px">
-                            <p>Birthday on <font color="blue">{{pet.birthday}}</font></p>
-                        </div>
-                </h5>
+                    <h5>
+                        <p data-toggle="collapse" data-target="#demo{{pet.id}}" style  = "color:purple;cursor: pointer;">{{pet.name}}</p>
+                    </h5>
+                    <div id="demo{{pet.id}}" class="collapse">
+                        <img src="http://127.0.0.1:8000/pawpular/uploads/{{pet.image}}" width="400px">
+                        <p>Birthday on <font color="blue">{{pet.birthday}}</font></p>
+                    </div>
+                
                 {% endfor %}
                 <p><a href="{% url 'pet_create' %}">Register a new pet!</a></p>
             </div>
@@ -47,31 +37,27 @@
 
             <br>
             <hr>
-            
-            <!--
-                will need a for loop for this one
-
-                i propose that the comments have a required date field.
-                same deal with the pets. one to many relationship
-                loop through the comments made by this particular user and display it in the following divs
-                also include time posted.
-            -->
 
             <div >
                 <h2>Posts</h2>
+                <p>Here are all the posts you have made! </p>
                 {% for post in user.profile.feedPosts.all %}
                     <!-- Left-aligned media object -->
-                    <div style="padding-right:2.5%;padding-left:2.5%;">
-                            <br>
-                            <hr>
-                        <div  >
-                                <h3>{{post.title}}</h3>   
-                            <div  style="padding-left:5%">
-                                <h4 class="media-heading" ><a href="{{post.createdBy.get_absolute_url}}"> {{post.createdBy.fname}} {{post.createdBy.lname}} </a></h4>
-                                
+                    <div style="padding-left:2.5%;">
+                        <br>
+                        <hr>
+
+                        <div>
+                            <h4>
+                                <p data-toggle="collapse" data-target="#demo{{post.id}}" style  = "color:crimson;cursor: pointer;">{{post.title}}</p>
+                            </h4>
+            
+                            <div id="demo{{post.id}}" class="collapse" style="padding-left:5%">
+
+                                <h4 class="media-heading" >
+                                    <a href="{{post.createdBy.get_absolute_url}}"> {{post.createdBy.fname}} {{post.createdBy.lname}} </a>
+                                </h4>
                                 <p>{{post.text}}</p> 
-
-
 
                                 {% if post.image %}
                                     <img id="myImg{{post.id}}" src="http://127.0.0.1:8000/pawpular/uploads/{{post.image}}" alt="{{post.title}}" width="300" height="200">
@@ -194,7 +180,6 @@
                                     </style>
                                 {% endif %}
 
-
                                 <p>{{post.post}}</p>                                        
                                 <p style = "color:blue">{{post.createdOn}}</p>
                                 {% ifequal request.user post.createdBy.user %}
@@ -207,8 +192,7 @@
                                             <a class="dropdown-item" href="#">Delete</a>
                                         </div>
                                     </div>
-                                {% endifequal %}
-                                    
+                                {% endifequal %}    
                             
                             </div>
                         </div>

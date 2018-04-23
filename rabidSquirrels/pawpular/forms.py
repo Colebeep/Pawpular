@@ -65,4 +65,4 @@ class makePet(forms.ModelForm):
     class Meta:
         model = Pet
         fields = ['name','birthday','image',]
-        labels = { 'name': _('What\'s your Pet\'s name?'),'birthday':_('What\'s your Pet\'s Birthday?'),'image':_('The World must see your pet!') }
+        labels = { 'name': _('Pet Name'),'birthday':_('Pet Birthday'),'image':_('Picture') }

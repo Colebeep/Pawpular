@@ -1,7 +1,9 @@
 {% extends "base_generic.html" %}
 {% block content %}
 
-<h1>make a service post</h1>
+
+<div align="center" style = "padding-top:5%;">
+<h1>Make a New Service Post</h1>
 
     <form action="" method="post">
         {% csrf_token %}
@@ -13,5 +15,5 @@
         <input type="submit" value="Submit" />
         
     </form>
-
+</div>
 {% endblock %}
