@@ -108,6 +108,32 @@ def feedpost_new(request):
         form = makeFeedPost(request.POST)
     return render(request,'pawpular/feedpost_new.html',{'form':form, })
 
+@login_required
+def pet_new(request):
+    if request.method == 'POST':
+        form = makePet(request.POST,request.FILES)
+
+        if form.is_valid():
+            pet = form.save(commit =False)
+            pet.owner = request.user.profile
+            pet.save()
+            request.user.profile.pets.add(pet)
+            #need to fix redirecting to profile
+            return HttpResponseRedirect(reverse('chat'))
+    else:
+        form = makePet(request.POST)
+
+    return render(request,'pawpular/new_pet.html',{'form':form,})
+
+
+
+
+
+
+
+
+
+
 @register.inclusion_tag("pawpular/feedpost_edit.html", takes_context=True)
 def feedpost_edit(request, id):
     if id:
@@ -183,19 +209,3 @@ def create_new_service(request):
 
 
 
-@login_required
-def pet_new(request):
-    if request.method == 'POST':
-        form = makePet(request.POST)
-
-        if form.is_valid():
-            pet = form.save(commit =False)
-            pet.owner = request.user.profile
-            pet.save()
-            request.user.profile.pets.add(pet)
-            #need to fix redirecting to profile
-            return HttpResponseRedirect(reverse('chat'))
-    else:
-        form = makePet(request.POST)
-
-    return render(request,'pawpular/new_pet.html',{'form':form,})
