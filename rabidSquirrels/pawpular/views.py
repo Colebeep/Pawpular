@@ -71,6 +71,7 @@ class ServiceCreate(CreateView):
 from .forms import makeMapPost , makeFeedPost , makeServicePost, makePet
 from django.contrib.auth import get_user
 
+@login_required
 @register.inclusion_tag("pawpular/mappost_list.html", takes_context=True)
 def mappost_new(request, lat, lon):
     if request.method == 'POST':
