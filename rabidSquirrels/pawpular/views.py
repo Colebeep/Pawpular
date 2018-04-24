@@ -84,7 +84,7 @@ def mappost_new(request, lat, lon):
             MapPost.latitude = lat
             MapPost.longitude = lon
             MapPost.save()
-            request.user.profile.mapPost.add(MapPost)
+            request.user.profile.mapPosts.add(MapPost)
             return HttpResponseRedirect(reverse('map'))
     else:
         form = makeMapPost()
@@ -153,7 +153,7 @@ def create_new_service(request):
     else:
         proposed_end_date = datetime.date.today() + datetime.timedelta(weeks=3)
         form = makeServicePost(initial={'startDate': datetime.date.today(),'endDate': proposed_end_date,})
-        # form=makeServicePost() 
+        # form=makeServicePost()
     return render(request,'pawpular/servicepost_form.html',{'form':form, })
 
 # this is to edit existing services
