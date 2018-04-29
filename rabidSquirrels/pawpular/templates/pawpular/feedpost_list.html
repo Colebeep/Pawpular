@@ -24,12 +24,12 @@
                 <div class="media-body">
                     <h4>{{post.createdBy.user.first_name}} {{post.createdBy.user.last_name}}</h4>
                     <h4 class="media-heading" style="padding-top:2%;"><a href="{{post.createdBy.get_absolute_url}}"> {{post.createdBy.fname}} {{post.createdBy.lname}} </a><!--span class="badge badge-secondary">New</span--></h4>
-                    <h3>{{post.title}}</h3>   
-                    <p>{{post.text}}</p> 
-                    {% if post.image %}   
+                    <h3>{{post.title}}</h3>
+                    <p>{{post.text}}</p>
+                    {% if post.image %}
                         <img src="http://127.0.0.1:8000/pawpular/uploads/{{post.image}}" class="media-object rounded" style="width:70px">
                     {% endif %}
-                    <p>{{post.post}}</p>                                        
+                    <p>{{post.post}}</p>
                     <p style = "color:blue">{{post.createdOn}}</p>
                     {% ifequal request.user post.createdBy.user %}
                     <div class="dropdown">
@@ -37,8 +37,8 @@
                             Edit Actions
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{%url 'feedpost_edit' post.id%}">Edit</button>
-                            <a class="dropdown-item" href="#">Delete</a>
+                            <a class="dropdown-item" href="{%url 'feedpost_edit' post.id%}">Edit</a>
+                            <a class="dropdown-item" href="{%url 'feedpost_delete' post.id%}">Delete</a>
                         </div>
                     </div>
                     {% endifequal %}

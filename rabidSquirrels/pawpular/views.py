@@ -91,6 +91,18 @@ def mappost_new(request, lat, lon):
         form = makeMapPost()
     return render(request,'pawpular/mappost_edit.html',{'form':form})
 
+from django.urls import reverse_lazy
+
+class mappost_edit(UpdateView):
+    template_name ='pawpular/mappost_edit.html'
+    model = MapPost
+    fields = ['title','text','image']
+    success_url=reverse_lazy('map')
+    
+class mappost_delete(DeleteView):
+    model = MapPost
+    success_url = reverse_lazy('map')
+    
 
 def feedpost_new(request):
     if request.method == 'POST':
@@ -107,6 +119,16 @@ def feedpost_new(request):
     else:
         form = makeFeedPost(request.POST)
     return render(request,'pawpular/feedpost_new.html',{'form':form, })
+    
+class feedpost_delete(DeleteView):
+    model=FeedPost
+    success_url = reverse_lazy('chat')
+    
+class feedpost_edit(UpdateView):
+    template_name='pawpular/feedpost_edit.html'
+    model = FeedPost
+    fields=['title','image','post']
+    success_url=reverse_lazy('chat')
 
 @login_required
 def pet_new(request):
@@ -124,36 +146,6 @@ def pet_new(request):
         form = makePet(request.POST)
 
     return render(request,'pawpular/new_pet.html',{'form':form,})
-
-
-
-
-
-
-
-
-
-
-@register.inclusion_tag("pawpular/feedpost_edit.html", takes_context=True)
-def feedpost_edit(request, id):
-    if id:
-        feedpost = get_object_or_404(FeedPost, pk=id)
-    
-        if feedpost.createdBy != request.user.profile:
-            print('createdBy mismatch')
-            return HttpResponseForbidden()
-    else:
-        feedpost = FeedPost(createdBy=request.user.profile)
-
-    form = makeFeedPost(request.POST, request.FILES, instance=feedpost)
-    if request.POST and form.is_valid():
-        form.save()
-
-        # Save was successful, so redirect to another page
-        return HttpResponseRedirect(reverse('chat'))
-
-    return render(request, 'pawpular/feedpost_edit.html', {'form':form, })
-
 
 
 

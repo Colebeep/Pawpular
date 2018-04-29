@@ -20,8 +20,12 @@ urlpatterns = [
     #these pageds do not it should tho. every user has their own security settings.
     path('settings/', views.settings, name='settings'),
     path(r'map/mappost/new/<lat>/<lon>',views.mappost_new, name='mappost_new'),
+    path(r'map/mappost/edit/<uuid:pk>',views.mappost_edit.as_view(),name='mappost_edit'),
+    path(r'map/mappost/delete/<uuid:pk>',views.mappost_delete.as_view(),name='mappost_delete'),
+    
     path('chat/feedpost/new',views.feedpost_new, name='feedpost_new'),
-    path(r'chat/feedpost/edit/<id>', views.feedpost_edit, name='feedpost_edit'),
+    path(r'chat/feedpost/edit/<uuid:pk>', views.feedpost_edit.as_view(), name='feedpost_edit'),
+    path(r'chat/feedpost/delete/<uuid:pk>',views.feedpost_delete.as_view(),name='feedpost_delete'),
 
     path('profile/create_pet', views.pet_new, name = "pet_create")
 
