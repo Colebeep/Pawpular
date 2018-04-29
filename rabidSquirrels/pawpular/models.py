@@ -16,6 +16,7 @@ class Post(models.Model):
 
     class Meta:
         abstract = True
+        ordering = ["-createdOn","createdBy"]
 
 class MapPost(Post):
     latitude = models.CharField(max_length=45, default='')
@@ -60,7 +61,9 @@ class Pet(models.Model):
     name = models.CharField(max_length=45)
     birthday = models.DateField('Birthday', null=True, blank=True)
     owner = models.ForeignKey('Profile', on_delete=models.CASCADE, blank=False)
-
+    
+    class Meta:
+        ordering =["name"]
     def __str__(self):
         return self.name
 
@@ -69,6 +72,9 @@ class Comment(models.Model):
     text = models.TextField(max_length=400, help_text="What are your thoughts..")
     user = models.ForeignKey('Profile',on_delete=models.CASCADE, null=True, blank=False)
     post = models.ManyToManyField('FeedPost', blank=True)
-
+    
+    class Meta:
+        ordering=["id"]
+    
     def __str__(self):
         return self.id.__str__()
