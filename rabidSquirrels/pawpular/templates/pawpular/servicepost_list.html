@@ -22,6 +22,19 @@
                             <p>{{service.text}}</p>
                             <p><a style="color:blue">{{service.startDate}}</a> - <a style="color:red">{{service.endDate}}</a></p>
                         </div>
+                    {% ifequal request.user service.createdBy.user %}
+                    <p>WOW!</p>
+                    <div class="dropdown">
+                        <button class="btn-sm btn-secondary dropdown-toggle outline" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Edit Actions
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{%url 'servicepost_edit' service.id%}">Edit</a>
+                            <a class="dropdown-item" href="{%url 'servicepost_delete' service.id%}">Delete</a>
+                        </div>
+                    </div>
+                    {% endifequal %}
+
 
                     </div>
                     

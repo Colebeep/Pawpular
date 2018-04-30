@@ -174,6 +174,16 @@ def create_new_service(request):
         form = makeServicePost(initial={'startDate': datetime.date.today(),'endDate': proposed_end_date,})
         # form=makeServicePost()
     return render(request,'pawpular/servicepost_form.html',{'form':form, })
+    
+class servicepost_edit(UpdateView):
+    #template_name='pawpular/servicepost_edit.html'
+    model = ServicePost
+    fields=['title','image','cost','startDate','endDate','text']
+    success_url=reverse_lazy('services')
+
+class servicepost_delete(DeleteView):
+    model=ServicePost
+    success_url = reverse_lazy('services')
 
 # this is to edit existing services
 # def edit_service(request,id):
